@@ -20,4 +20,30 @@ defined('_JEXEC') or die;
  */
 class TestAjaxControllerTestAjax extends AdminController
 {
+	/**/
+	function AjaxIncreaseValue()
+	{
+
+	}
+
+	/**/
+	function AjaxError()
+	{
+
+	}
+
+	/**/
+	function AjaxWarning()
+	{
+
+	}
+
+	/**/
+	function AjaxNotice()
+	{
+
+	}
+
 }
+
+

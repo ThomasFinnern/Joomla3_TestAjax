@@ -50,7 +50,7 @@ $doc->addScript(JUri::root() . '/administrator/components/com_testajax/views/tes
     <buttonAjaxError
             id="btnAjaxError"
             type="buttonIncreaseValue"
-            class="btn btn-error"
+            class="btn btn-danger"
             title="On click creates an error on ajax call on the server side"
     >
         <span class="icon-copy" aria-hidden="true"></span>
@@ -72,9 +72,9 @@ $doc->addScript(JUri::root() . '/administrator/components/com_testajax/views/tes
     <br><br>
 
     <buttonAjaxNotice
-            id="btnAjaxError"
+            id="btnAjaxNotice"
             type="buttonIncreaseValue"
-            class="btn btn-notice"
+            class="btn btn-info"
             title="On click creates an error on ajax call on the server side"
     >
         <span class="icon-copy" aria-hidden="true"></span>
