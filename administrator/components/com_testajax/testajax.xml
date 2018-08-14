@@ -76,6 +76,6 @@
 
 	<!-- Update servers -->
 	<updateservers>
-		<server type="extension" priority="1" name="[com_testajax]">https://www.example.com/testajax.xml</server>
+		<server type="extension" priority="1" name="com_testajax">https://www.example.com/testajax.xml</server>
 	</updateservers>
 </extension>

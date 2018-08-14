@@ -22,10 +22,13 @@ jQuery(document).ready(function ($) {
         return;
     }
 
-	var buttonManualFile = $('#select_manual_file');
-
-    buttonManualFile.on('click', function (e) {
-        alert('buttonManualFile.on click: '); // + JSON.stringify($(this)));
+	var buttonIncreaseValue = $('#btnIncreaseValue');
+    buttonIncreaseValue.on('click', function (e) {
+        alert('buttonIncreaseValue.on click: '); // + JSON.stringify($(this)));
     });
+
+
+
+
 
 }) // ready

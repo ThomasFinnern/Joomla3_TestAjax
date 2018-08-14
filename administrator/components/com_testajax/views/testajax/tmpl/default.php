@@ -22,17 +22,63 @@ $doc->addScript(JUri::root() . '/administrator/components/com_testajax/views/tes
 </div>
 <div id="j-main-container" class="span10">
 
-    <buttonmanualfile
-            id="select_manual_file"
-            type="buttonManualFile"
+    <br>
+
+    <div class="control-group">
+        <div class="control-label">
+            <label id="jform_ajaxTestValue-lbl" for="jform_ajaxTestValue" class="hasPopover" title="" data-content="On click 'Increase Value' this value is increased if ajax call was successful" data-original-title="JPEG Quality Percentage">
+                Test value
+            </label>
+        </div>
+        <div class="controls">
+            <input name="jform[ajaxTestValue]" id="jform_ajaxTestValue" value="0" aria-invalid="false" type="text">
+        </div>
+    </div>
+
+    <buttonIncreaseValue
+            id="btnIncreaseValue"
+            type="buttonIncreaseValue"
             class="btn btn-success"
-            title="Select image files or a zip file containing images"
+            title="On click increases test value with call to server over ajax. The PHP on the server increases the value and returns it"
     >
         <span class="icon-copy" aria-hidden="true"></span>
-        Select files
-    </buttonmanualfile>
+        Increase Value (over ajax)
+    </buttonIncreaseValue>
 
+    <br><br>
 
+    <buttonAjaxError
+            id="btnAjaxError"
+            type="buttonIncreaseValue"
+            class="btn btn-error"
+            title="On click creates an error on ajax call on the server side"
+    >
+        <span class="icon-copy" aria-hidden="true"></span>
+        Ajax error
+    </buttonAjaxError>
 
+    <br><br>
+
+    <buttonAjaxWarning
+            id="btnAjaxWarning"
+            type="buttonIncreaseValue"
+            class="btn btn-warning"
+            title="On click creates a warning on ajax call on the server side"
+    >
+        <span class="icon-copy" aria-hidden="true"></span>
+        Ajax Warning
+    </buttonAjaxWarning>
+
+    <br><br>
+
+    <buttonAjaxNotice
+            id="btnAjaxError"
+            type="buttonIncreaseValue"
+            class="btn btn-notice"
+            title="On click creates an error on ajax call on the server side"
+    >
+        <span class="icon-copy" aria-hidden="true"></span>
+        Ajax Notice
+    </buttonAjaxNotice>
 
 </div>
