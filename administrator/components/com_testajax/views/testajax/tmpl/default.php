@@ -24,7 +24,7 @@ $doc->addScript(JUri::root() . '/administrator/components/com_testajax/views/tes
 
     <br>
 
-    <div id="Messages"></div>
+    <div id="messagesArea"></div>
 
 
     <div class="control-group">
@@ -34,7 +34,7 @@ $doc->addScript(JUri::root() . '/administrator/components/com_testajax/views/tes
             </label>
         </div>
         <div class="controls">
-            <input name="jform[ajaxTestValue]" id="jform_ajaxTestValue" value="0" aria-invalid="false" type="text">
+            <input name="jform[ajaxTestValue]" id="jform_ajaxTestValue" value="0" aria-invalid="false" type="text"></input>
         </div>
     </div>
 

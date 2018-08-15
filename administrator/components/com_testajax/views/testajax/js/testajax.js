@@ -35,15 +35,12 @@ jQuery(document).ready(function ($) {
     var urlAjaxWarning = 'index.php?option=com_testajax&task=testajax.AjaxWarning';
     var urlAjaxNotice = 'index.php?option=com_testajax&task=testajax.AjaxNotice';
 
-
     //--------------------------------------
-    // Button increase value
+    // Function Button click ->increase value
     //--------------------------------------
 
     var buttonIncreaseValue = $('#btnIncreaseValue');
     buttonIncreaseValue.on('click', function (e) {
-
-        alert("010");
 
         //--------------------------------------
         // Handle number value from user
@@ -52,21 +49,15 @@ jQuery(document).ready(function ($) {
         // for function sendFileToServer
         var formData = new FormData();
 
-        alert("020");
+        // var test = jQuery('#jform_ajaxTestValue');
+        var test = jQuery('input[name="jform[ajaxTestValue]"]');
 
-        var test = jQuery('#jform_ajaxTestValue');
-
-        if (test.length == 0) {
-            alert("030");
-        }
-        else
-        {
-            alert("Name: " + test.id);
-        }
-        alert("035");
+        jQuery('input[name="jform[ajaxTestValue]"]').val('20');
 
         formData.strNumber = jQuery('#jform_ajaxTestValue').val();
-        alert ('strNumber: "' + strNumber + '"');
+        // formData.strNumber = jQuery('input[name="jform[ajaxTestValue]"]').val();
+
+        alert ('strNumber: "' + formData.strNumber + '"');
 
         //--------------------------------------
         //
@@ -110,26 +101,83 @@ jQuery(document).ready(function ($) {
 
             var jData;
 
+            alert ("done");
+
             //--- Handle PHP Error and notification messages first (separate) -------------------------
 
             // is first part php error- or debug- echo string ?
             // find start of json
             var StartIdx = eData.indexOf('{"');
+
+            // Jquery starts at the beginning, no additional message
             if (StartIdx == 0) {
+                alert ("B01");
+
+                alert ("B02:" + eData);
+
                 jData = jQuery.parseJSON(eData);
+
+                alert ("A10");
             }
             else {
-                console.log(': Success with message');
-                // find error html text
-                var errorText = eData.substring(0, StartIdx - 1);
-                // append to be viewed
-                var messagesArea = $('#Messages');
-                messagesArea.append(errorText);
+                alert ("A02:" + StartIdx);
 
-                // extract json data of uploaded image
-                var jsonText = eData.substring(StartIdx);
-                jData = jQuery.parseJSON(jsonText);
+                // part of JSOn existing
+                if(StartIdx > 0) {
+                    console.log(': Success with message');
+                    // find error html text
+                    var errorText = eData.substring(0, StartIdx - 1);
+                    alert("A03");
+                    // append to be viewed
+                    var messagesArea = $('#Messages');
+                    alert("A04");
+                    messagesArea.append(errorText);
+                    alert("A05");
+
+                    // extract json data of uploaded image
+                    var jsonText = eData.substring(StartIdx);
+                    alert("A06");
+                    jData = jQuery.parseJSON(jsonText);
+                    alert("A06");
+                }
+                else
+                {
+                    // No Json data
+                    // append message to be viewed
+                    var messagesArea = $('#messagesArea');
+                    alert("C01");
+                    messagesArea.append('<div>Message: "' + eData + '"<div>');
+                    /**
+                     *
+
+                     Date and time / only time ...
+
+                    <div class="alert">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Warning!</strong> Best check yo self, you're not looking too good.
+                    </div>
+
+                     <div class="alert alert-block">
+                     <button type="button" class="close" data-dismiss="alert">&times;</button>
+                     <h4>Warning!</h4>
+                     Best check yo self, you're not...
+                     </div>
+
+                     http://getbootstrap.com/2.3.2/components.html
+
+                     <div class="alert alert-info">
+                     ...
+                     </div>
+
+
+
+
+                     */
+                    alert("C02");
+                }
             }
+
+            alert ("03");
 
             // Check that JResponseJson data structure may be available
             if (!'success' in jData) {
@@ -137,15 +185,19 @@ jQuery(document).ready(function ($) {
                 return;
             }
 
+            alert ("04");
+
             // ToDo: Handle JOOMLA Error and notification messages -> inside Json
 
             //--- success -------------------------
 
             // Sucessfull result
             if (jData.success == true) {
+                alert ("05");
                 alert('XXX. Result success 05' + ' New Number: "' + jData.number + '"');
             }
             else {
+                alert ("05");
                 alert('XXX. No success 05');
             }
 
