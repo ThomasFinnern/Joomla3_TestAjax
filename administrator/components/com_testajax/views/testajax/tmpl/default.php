@@ -24,6 +24,9 @@ $doc->addScript(JUri::root() . '/administrator/components/com_testajax/views/tes
 
     <br>
 
+    <div id="Messages"></div>
+
+
     <div class="control-group">
         <div class="control-label">
             <label id="jform_ajaxTestValue-lbl" for="jform_ajaxTestValue" class="hasPopover" title="" data-content="On click 'Increase Value' this value is increased if ajax call was successful" data-original-title="JPEG Quality Percentage">

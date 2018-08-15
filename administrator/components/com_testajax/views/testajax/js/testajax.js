@@ -22,14 +22,55 @@ jQuery(document).ready(function ($) {
         return;
     }
 
+    //--------------------------------------
+    //
+    //--------------------------------------
+
+    //--------------------------------------
+    // Links to server controller functions
+    //--------------------------------------
+
     var urlIncreaseValue = 'index.php?option=com_testajax&task=testajax.AjaxIncreaseValue';
     var urlAjaxError = 'index.php?option=com_testajax&task=testajax.AjaxError';
     var urlAjaxWarning = 'index.php?option=com_testajax&task=testajax.AjaxWarning';
     var urlAjaxNotice = 'index.php?option=com_testajax&task=testajax.AjaxNotice';
 
 
+    //--------------------------------------
+    // Button increase value
+    //--------------------------------------
+
     var buttonIncreaseValue = $('#btnIncreaseValue');
     buttonIncreaseValue.on('click', function (e) {
+
+        alert("010");
+
+        //--------------------------------------
+        // Handle number value from user
+        //--------------------------------------
+
+        // for function sendFileToServer
+        var formData = new FormData();
+
+        alert("020");
+
+        var test = jQuery('#jform_ajaxTestValue');
+
+        if (test.length == 0) {
+            alert("030");
+        }
+        else
+        {
+            alert("Name: " + test.id);
+        }
+        alert("035");
+
+        formData.strNumber = jQuery('#jform_ajaxTestValue').val();
+        alert ('strNumber: "' + strNumber + '"');
+
+        //--------------------------------------
+        //
+        //--------------------------------------
 
         var jqXHR = jQuery.ajax({
             xhr: function () {
@@ -62,7 +103,6 @@ jQuery(document).ready(function ($) {
         On success / done
         ----------------------------------------------------*/
 
-        //---  --------------------------------
         .done(function (eData, textStatus, jqXHR) {
             //alert('done Success: "' + String(eData) + '"')
 
@@ -83,8 +123,8 @@ jQuery(document).ready(function ($) {
                 // find error html text
                 var errorText = eData.substring(0, StartIdx - 1);
                 // append to be viewed
-                var progressArea = $('#uploadProgressArea');
-                progressArea.append(errorText);
+                var messagesArea = $('#Messages');
+                messagesArea.append(errorText);
 
                 // extract json data of uploaded image
                 var jsonText = eData.substring(StartIdx);
@@ -101,9 +141,9 @@ jQuery(document).ready(function ($) {
 
             //--- success -------------------------
 
-            // file successful transferred
+            // Sucessfull result
             if (jData.success == true) {
-                alert('XXX. Result success 05');
+                alert('XXX. Result success 05' + ' New Number: "' + jData.number + '"');
             }
             else {
                 alert('XXX. No success 05');

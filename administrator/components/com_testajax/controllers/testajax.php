@@ -23,7 +23,47 @@ class TestAjaxControllerTestAjax extends AdminController
 	/**/
 	function AjaxIncreaseValue()
 	{
+		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
+		$msg = 'AjaxIncreaseValue';
+
+		$app = JFactory::getApplication();
+		try {
+			// Data from FormData
+			$input = JFactory::getApplication()->input;
+			$number = $input->get('strNumber', 0, 'INT');
+
+			// Return increased number
+			$number++;
+
+			$ajaxAnswerObj ['number'] = $number;
+
+			// Test: Is input smaller than zero -> tell bad result
+			$hasError = false;
+			if ($number < 0) {
+				$hasError = true;
+				$msg .= '<br> Resulting number must be bigger than zero';
+			}
+
+			// Test: If Number is now zero we produce an integer error
+			if ($number < 0) {
+				$hasError = true;
+				$msg .= '<br> On resulting number zero we produce an integer division error';
+				$TestNumber = 0 / $number;
+				$msg .= '<br> ? division error survived ? Value ' . $TestNumber;
+				$hasError = false;
+			}
+
+			// yyy comment all
+			echo new JResponseJson($ajaxAnswerObj, $msg, $hasError);
+
+		} catch (Exception $e) {
+			// Failed Test 1
+
+			echo new JResponseJson($e, $msg, $hasError);
+		}
+
+		$app->close();
 	}
 
 	/**/
