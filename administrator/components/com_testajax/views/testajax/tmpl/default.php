@@ -22,66 +22,73 @@ $doc->addScript(JUri::root() . '/administrator/components/com_testajax/views/tes
 </div>
 <div id="j-main-container" class="span10">
 
-    <br>
+    <form action="<?php echo JRoute::_('index.php?option=&view=com_testajax'); ?>"
+          method="post" name="adminForm" id="adminForm" enctype="multipart/form-data"
+          class="form-validate form-horizontal">
 
-    <div id="messagesArea"></div>
+        <br>
+
+        <div id="messagesArea"></div>
 
 
-    <div class="control-group">
-        <div class="control-label">
-            <label id="jform_ajaxTestValue-lbl" for="jform_ajaxTestValue" class="hasPopover" title="" data-content="On click 'Increase Value' this value is increased if ajax call was successful" data-original-title="JPEG Quality Percentage">
-                Test value
-            </label>
+        <div class="control-group">
+            <div class="control-label">
+                <label id="jform_ajaxTestValue-lbl" for="jform_ajaxTestValue" class="hasPopover" title="" data-content="On click 'Increase Value' this value is increased if ajax call was successful" data-original-title="JPEG Quality Percentage">
+                    Test value
+                </label>
+            </div>
+            <div class="controls">
+                <input name="jform[ajaxTestValue]" id="jform_ajaxTestValue" value="0" aria-invalid="false" type="text"></input>
+            </div>
         </div>
-        <div class="controls">
-            <input name="jform[ajaxTestValue]" id="jform_ajaxTestValue" value="0" aria-invalid="false" type="text"></input>
-        </div>
-    </div>
 
-    <buttonIncreaseValue
-            id="btnIncreaseValue"
-            type="buttonIncreaseValue"
-            class="btn btn-success"
-            title="On click increases test value with call to server over ajax. The PHP on the server increases the value and returns it"
-    >
-        <span class="icon-copy" aria-hidden="true"></span>
-        Increase Value (over ajax)
-    </buttonIncreaseValue>
+        <buttonIncreaseValue
+                id="btnIncreaseValue"
+                type="buttonIncreaseValue"
+                class="btn btn-success"
+                title="On click increases test value with call to server over ajax. The PHP on the server increases the value and returns it"
+        >
+            <span class="icon-copy" aria-hidden="true"></span>
+            Increase Value (over ajax)
+        </buttonIncreaseValue>
 
-    <br><br>
+        <br><br>
 
-    <buttonAjaxError
-            id="btnAjaxError"
-            type="buttonIncreaseValue"
-            class="btn btn-danger"
-            title="On click creates an error on ajax call on the server side"
-    >
-        <span class="icon-copy" aria-hidden="true"></span>
-        Ajax error
-    </buttonAjaxError>
+        <buttonAjaxError
+                id="btnAjaxError"
+                type="buttonIncreaseValue"
+                class="btn btn-danger"
+                title="On click creates an error on ajax call on the server side"
+        >
+            <span class="icon-copy" aria-hidden="true"></span>
+            Ajax error
+        </buttonAjaxError>
 
-    <br><br>
+        <br><br>
 
-    <buttonAjaxWarning
-            id="btnAjaxWarning"
-            type="buttonIncreaseValue"
-            class="btn btn-warning"
-            title="On click creates a warning on ajax call on the server side"
-    >
-        <span class="icon-copy" aria-hidden="true"></span>
-        Ajax Warning
-    </buttonAjaxWarning>
+        <buttonAjaxWarning
+                id="btnAjaxWarning"
+                type="buttonIncreaseValue"
+                class="btn btn-warning"
+                title="On click creates a warning on ajax call on the server side"
+        >
+            <span class="icon-copy" aria-hidden="true"></span>
+            Ajax Warning
+        </buttonAjaxWarning>
 
-    <br><br>
+        <br><br>
 
-    <buttonAjaxNotice
-            id="btnAjaxNotice"
-            type="buttonIncreaseValue"
-            class="btn btn-info"
-            title="On click creates an error on ajax call on the server side"
-    >
-        <span class="icon-copy" aria-hidden="true"></span>
-        Ajax Notice
-    </buttonAjaxNotice>
+        <buttonAjaxNotice
+                id="btnAjaxNotice"
+                type="buttonIncreaseValue"
+                class="btn btn-info"
+                title="On click creates an error on ajax call on the server side"
+        >
+            <span class="icon-copy" aria-hidden="true"></span>
+            Ajax Notice
+        </buttonAjaxNotice>
+
+	<?php echo JHtml::_('form.token'); ?>
+    </form>
 
 </div>

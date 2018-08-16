@@ -25,7 +25,7 @@ class TestAjaxControllerTestAjax extends AdminController
 	{
 
 		// Wrong will return to done with error message
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+		// JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
 		$msg = 'AjaxIncreaseValue';
 
