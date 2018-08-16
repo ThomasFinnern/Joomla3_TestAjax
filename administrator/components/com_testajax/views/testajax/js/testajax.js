@@ -146,7 +146,18 @@ jQuery(document).ready(function ($) {
                     // append message to be viewed
                     var messagesArea = $('#messagesArea');
                     alert("C01");
-                    messagesArea.append('<div>Message: "' + eData + '"<div>');
+                    var OutHtml = CreateErrorHtml (eData);
+                    messagesArea.append(OutHtml);
+
+                    var OutHtml = CreateSucessHtml (eData);
+                    messagesArea.append(OutHtml);
+
+                    var OutHtml = CreateNoticeHtml (eData);
+                    messagesArea.append(OutHtml);
+
+                    var OutHtml = CreateWarningHtml (eData);
+                    messagesArea.append(OutHtml);
+
                     /**
                      *
 
@@ -242,6 +253,55 @@ jQuery(document).ready(function ($) {
     buttonAjaxNotice.on('click', function (e) {
         alert('buttonAjaxNotice.on click: '); // + JSON.stringify($(this)));
     });
+
+    // alertType []
+    // classAddition []
+    function CreateAlertHtml(displayText, alertType, classAddition) {
+
+        var Today = new Date();
+        var ActTime = Today.toLocaleTimeString('en-GB');
+        var OutText = "";
+
+        OutText += '<div class="alert ' + classAddition + ' alert-block">';
+        OutText += '    <button type="button" class="close" data-dismiss="alert">&times;</button>';
+        OutText += '    <h4>' + alertType + '!</h4>';
+        OutText += '    ' + ActTime + ' ' + displayText;
+        OutText += '</div>';
+
+        return OutText;              // The function returns the product of p1 and p2
+    }
+
+    function CreateSucessHtml(displayText) {
+
+        var OutText = CreateAlertHtml(displayText, 'Sucess', 'alert-success')
+
+        return OutText;
+    }
+
+    function CreateNoticeHtml(displayText) {
+
+        var OutText = CreateAlertHtml(displayText, 'Notice', 'alert-info')
+
+        return OutText;
+    }
+
+    function CreateWarningHtml(displayText) {
+
+        var OutText = CreateAlertHtml(displayText, 'Warning', '')
+
+        return OutText;
+    }
+
+    function CreateErrorHtml(displayText) {
+
+        var OutText = CreateAlertHtml(displayText, 'Error', 'alert-error')
+
+        return OutText;
+    }
+
+
+
+
 
 
 }) // ready

@@ -23,12 +23,21 @@ class TestAjaxControllerTestAjax extends AdminController
 	/**/
 	function AjaxIncreaseValue()
 	{
+
+		// Wrong will return to done with error message
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
 		$msg = 'AjaxIncreaseValue';
 
 		$app = JFactory::getApplication();
 		try {
+			// right place to check
+			if ( ! JSession::checkToken()) {
+				$msg = JText::_('JINVALID_TOKEN');
+				$hasError = 1;
+				echo new JResponseJson('', $msg, $hasError);
+			}
+
 			// Data from FormData
 			$input = JFactory::getApplication()->input;
 			$number = $input->get('strNumber', 0, 'INT');
