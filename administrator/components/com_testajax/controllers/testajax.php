@@ -93,6 +93,22 @@ class TestAjaxControllerTestAjax extends AdminController
 
 	}
 
+		/**
+		$data['myRequest'] =$_REQUEST;
+		$data['myFile'] =__FILE__;
+		$data['myLine'] ='Line '.__LINE__;
+
+		$app->enqueueMessage('This part was reached at line ' . __LINE__);
+		$app->enqueueMessage('Then this part was reached at line ' . __LINE__);
+		$app->enqueueMessage('Here was a small warning at line ' . __LINE__, 'warning');
+		$app->enqueueMessage('Here was a big warning at line ' . __LINE__, 'error');
+
+		$task_failed = false;
+		echo new JResponseJson($data, 'My main response message',$task_failed);
+		/**/
+
+
+
 }
 
 

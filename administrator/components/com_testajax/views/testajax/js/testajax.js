@@ -81,7 +81,9 @@ jQuery(document).ready(function ($) {
                 }
                 return xhrobj;
             },
-            url: urlIncreaseValue,
+            url: urlIncreaseValue,  // &format=raw     . '&'JSession::getFormToken().'=1'
+
+
             type: "POST",
             contentType: false,
             processData: false,
