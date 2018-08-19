@@ -16,6 +16,11 @@ $doc = JFactory::getDocument();
 
 $doc->addScript(JUri::root() . '/administrator/components/com_testajax/views/testajax/js/testajax.js');
 
+$token    = '&' . JSession::getFormToken() . '=' . 1;
+$script[] = 'var Token = \'' . $token . '\';';
+JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
+
+
 ?>
 <div id="j-sidebar-container" class="span2">
 	<?php echo $this->sidebar; ?>

@@ -30,10 +30,12 @@ jQuery(document).ready(function ($) {
     // Links to server controller functions
     //--------------------------------------
 
-    var urlIncreaseValue = 'index.php?option=com_testajax&task=testajax.AjaxIncreaseValue';
-    var urlAjaxError = 'index.php?option=com_testajax&task=testajax.AjaxError';
-    var urlAjaxWarning = 'index.php?option=com_testajax&task=testajax.AjaxWarning';
-    var urlAjaxNotice = 'index.php?option=com_testajax&task=testajax.AjaxNotice';
+    var urlIncreaseValue = './index.php?option=com_testajax&task=testajax.AjaxIncreaseValue' + Token;
+    var urlAjaxError = 'index.php?option=com_testajax&task=testajax.AjaxError' + Token;
+    var urlAjaxErrorDie = 'index.php?option=com_testajax&task=testajax.AjaxErrorDie' + Token;
+    var urlAjaxErrorJexit = 'index.php?option=com_testajax&task=testajax.AjaxErrorJexit' + Token;
+    var urlAjaxWarning = 'index.php?option=com_testajax&task=testajax.AjaxWarning' + Token;
+    var urlAjaxNotice = 'index.php?option=com_testajax&task=testajax.AjaxNotice' + Token;
 
     //--------------------------------------
     // Function Button click ->increase value
@@ -58,34 +60,16 @@ jQuery(document).ready(function ($) {
         // formData.strNumber = jQuery('input[name="jform[ajaxTestValue]"]').val();
 
         alert ('strNumber: "' + formData.strNumber + '"');
+        alert ('urlIncreaseValue: "' + urlIncreaseValue + '"');
 
         //--------------------------------------
         //
         //--------------------------------------
 
         var jqXHR = jQuery.ajax({
-            xhr: function () {
-                var xhrobj = jQuery.ajaxSettings.xhr();
-                if (xhrobj.upload) {
-                    xhrobj.upload.addEventListener('progress', function (event) {
-                        var percent = 0;
-                        // if (event.lengthComputable) {
-                        var position = event.loaded || event.position;
-                        var total = event.total;
-                        if (event.lengthComputable) {
-                            percent = Math.ceil(position / total * 100);
-                        }
-                        //Set progress
-                        statusBar.setProgress(percent);
-                    }, false);
-                }
-                return xhrobj;
-            },
-            url: urlIncreaseValue,  // &format=raw     . '&'JSession::getFormToken().'=1'
-
-
-            type: "POST",
-            contentType: false,
+            url: urlIncreaseValue,
+            type: 'POST',
+            contentType: 'json',
             processData: false,
             cache: false,
             // timeout:20000, // 20 seconds timeout (was too short)
@@ -99,98 +83,28 @@ jQuery(document).ready(function ($) {
         .done(function (eData, textStatus, jqXHR) {
             //alert('done Success: "' + String(eData) + '"')
 
-            console.log(': Success');
+            console.log(': ajax returned in done');
+            alert (': ajax returned in done');
 
-            var jData;
+            alert ('textStatus: ' + textStatus);
 
-            alert ("done");
+
+
+            var jData = '';
 
             //--- Handle PHP Error and notification messages first (separate) -------------------------
+            var extract = extractDataMessages(eData);
 
-            // is first part php error- or debug- echo string ?
-            // find start of json
-            var StartIdx = eData.indexOf('{"');
+            alert ("D01");
+            jData = extract.Data;
+            alert ("D02");
+            writeMessage (extract.Message);
 
-            // Jquery starts at the beginning, no additional message
-            if (StartIdx == 0) {
-                alert ("B01");
-
-                alert ("B02:" + eData);
-
-                jData = jQuery.parseJSON(eData);
-
-                alert ("A10");
-            }
-            else {
-                alert ("A02:" + StartIdx);
-
-                // part of JSOn existing
-                if(StartIdx > 0) {
-                    console.log(': Success with message');
-                    // find error html text
-                    var errorText = eData.substring(0, StartIdx - 1);
-                    alert("A03");
-                    // append to be viewed
-                    var messagesArea = $('#Messages');
-                    alert("A04");
-                    messagesArea.append(errorText);
-                    alert("A05");
-
-                    // extract json data of uploaded image
-                    var jsonText = eData.substring(StartIdx);
-                    alert("A06");
-                    jData = jQuery.parseJSON(jsonText);
-                    alert("A06");
-                }
-                else
-                {
-                    // No Json data
-                    // append message to be viewed
-                    var messagesArea = $('#messagesArea');
-                    alert("C01");
-                    var OutHtml = CreateErrorHtml (eData);
-                    messagesArea.append(OutHtml);
-
-                    var OutHtml = CreateSucessHtml (eData);
-                    messagesArea.append(OutHtml);
-
-                    var OutHtml = CreateNoticeHtml (eData);
-                    messagesArea.append(OutHtml);
-
-                    var OutHtml = CreateWarningHtml (eData);
-                    messagesArea.append(OutHtml);
-
-                    /**
-                     *
-
-                     Date and time / only time ...
-
-                    <div class="alert">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Warning!</strong> Best check yo self, you're not looking too good.
-                    </div>
-
-                     <div class="alert alert-block">
-                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                     <h4>Warning!</h4>
-                     Best check yo self, you're not...
-                     </div>
-
-                     http://getbootstrap.com/2.3.2/components.html
-
-                     <div class="alert alert-info">
-                     ...
-                     </div>
-
-
-
-
-                     */
-                    alert("C02");
-                }
-            }
-
-            alert ("03");
+            alert ("D03");
+            alert ('extract.Message: ' + extract.Message);
+            alert ("D04");
+            alert ('jData: "' + JData + '"');
+            alert ("D05");
 
             // Check that JResponseJson data structure may be available
             if (!'success' in jData) {
@@ -198,22 +112,29 @@ jQuery(document).ready(function ($) {
                 return;
             }
 
-            alert ("04");
+            alert ("E01");
 
             // ToDo: Handle JOOMLA Error and notification messages -> inside Json
 
+            // jData.success
+            // jData.messsage
+            // jData.messages
+            // jData.data
+
             //--- success -------------------------
 
-            // Sucessfull result
+            // Successful result
             if (jData.success == true) {
-                alert ("05");
-                alert('XXX. Result success 05' + ' New Number: "' + jData.number + '"');
+                alert ("F01");
+                alert('XXX. Result success 05' + ' New Number: "' + jData.data.number + '"');
+                alert ("F02");
+                jQuery('input[name="jform[ajaxTestValue]"]').val(jData.data.number);
+                alert ("F03");
             }
             else {
                 alert ("05");
                 alert('XXX. No success 05');
             }
-
         })
 
         /*----------------------------------------------------
@@ -222,7 +143,8 @@ jQuery(document).ready(function ($) {
 
         .fail(function (jqXHR, textStatus, exceptionType) {
 
-            console.log(': fail');
+            console.log(': ajax returned in fail');
+            alert (': ajax returned in fail');
 
             alert(' failed: "' + textStatus + '" -> "' + exceptionType + '" [' + jqXHR.status + ']');
 
@@ -234,9 +156,9 @@ jQuery(document).ready(function ($) {
         ----------------------------------------------------*/
 
         .always(function (eData, textStatus, jqXHR) {
-            alert ('always: "' + textStatus + '"');
+            console.log(': ajax now in always section');
+            alert (': ajax now in always section');
         });
-
 
         alert('buttonIncreaseValue.on click: '); // + JSON.stringify($(this)));
     });
@@ -267,7 +189,7 @@ jQuery(document).ready(function ($) {
         OutText += '<div class="alert ' + classAddition + ' alert-block">';
         OutText += '    <button type="button" class="close" data-dismiss="alert">&times;</button>';
         OutText += '    <h4>' + alertType + '!</h4>';
-        OutText += '    ' + ActTime + ' ' + displayText;
+        OutText += '    ' + displayText + ' :: ' + ActTime ;
         OutText += '</div>';
 
         return OutText;              // The function returns the product of p1 and p2
@@ -301,6 +223,106 @@ jQuery(document).ready(function ($) {
         return OutText;
     }
 
+
+    function extractDataMessages(eData) {
+        // Pre init
+        var jData = "";
+        var errMessage = "";
+
+        alert ("EE01");
+
+        // is first part php error- or debug- echo string ?
+        // find start of json
+        var StartIdx = eData.indexOf('{"');
+
+        alert ("EE02");
+
+
+
+        // No Json data
+        if (StartIdx < 0) {
+            alert ("EE03");
+
+            errMessage = eData;
+        }
+        else {
+            alert ("EE04");
+
+            // Jquery starts at the beginning, no additional message
+            if (StartIdx == 0) {
+                alert ("EE05");
+                alert("eData: '" + eData + "'");
+                alert ("EE06");
+
+                jData = jQuery.parseJSON(eData);
+
+            }
+            else {
+                alert ("EE06");
+
+                // StartIdx > 0
+                // message part and json data existing
+                errMessage = eData.substring(0, StartIdx - 1);
+
+                alert ("EE07");
+
+                var jsonText = eData.substring(StartIdx);
+                alert ("EE08");
+
+                jData = jQuery.parseJSON(jsonText);
+                alert ("EE09");
+            }
+
+        }
+
+        return {
+            Data: jData,
+            Message: errMessage
+        };
+    }
+
+    function  writeMessage (message) {
+        // append message to be viewed
+        var messagesArea = $('#messagesArea');
+        var OutHtml = CreateErrorHtml(message);
+        messagesArea.append(OutHtml);
+    }
+
+
+    /**
+            console.log(': Done with data before json object');
+            // find error html text
+            alert("A03");
+            // append to be viewed
+            var messagesArea = $('#Messages');
+            alert("A04");
+            var OutHtml = CreateErrorHtml(errorText);
+            messagesArea.append(OutHtml);
+            alert("A05");
+
+            // extract json data of uploaded image
+            alert("A06");
+        }
+        else {
+
+            alert("C02: found data: '" + JSON.stringify(eData) + "'");
+
+            /**
+             var OutHtml = CreateSucessHtml (eData);
+             messagesArea.append(OutHtml);
+
+             var OutHtml = CreateNoticeHtml (eData);
+             messagesArea.append(OutHtml);
+
+             var OutHtml = CreateWarningHtml (eData);
+             messagesArea.append(OutHtml);
+             /**
+
+            alert("C02");
+        }
+    }
+    return jData;
+    /**/
 
 
 

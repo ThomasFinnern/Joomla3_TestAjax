@@ -23,7 +23,8 @@ class TestAjaxControllerTestAjax extends AdminController
 	/**/
 	function AjaxIncreaseValue()
 	{
-
+		// $token    = JSession::getFormToken();
+		// Get instead of post problem
 		// Wrong will return to done with error message
 		// JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
@@ -31,12 +32,14 @@ class TestAjaxControllerTestAjax extends AdminController
 
 		$app = JFactory::getApplication();
 		try {
+			/**
 			// right place to check
 			if ( ! JSession::checkToken()) {
 				$msg = JText::_('JINVALID_TOKEN');
 				$hasError = 1;
 				echo new JResponseJson('', $msg, $hasError);
 			}
+			/**/
 
 			// Data from FormData
 			$input = JFactory::getApplication()->input;
@@ -73,6 +76,27 @@ class TestAjaxControllerTestAjax extends AdminController
 		}
 
 		$app->close();
+	}
+
+	/**/
+	function AjaxErrorDie()
+	{
+		//
+		// Wrong will return to done with error message
+		// JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+		die ("died immediately after enter of function");
+
+
+	}
+
+	/**/
+	function AjaxErrorJexit()
+	{
+		//
+		// Wrong will return to done with error message
+		// JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+
+		jexit ("exited immediately after enter of function");
 	}
 
 	/**/
