@@ -138,7 +138,23 @@ class TestAjaxControllerTestAjax extends AdminController
 		$app->close();
 	}
 
-		/**
+	/**/
+	function AjaxAll()
+	{
+		$msg = 'AjaxAll';
+
+		$app = JFactory::getApplication();
+		$app->enqueueMessage('User notice in ajax call', 'notice');
+		$app->enqueueMessage('User warning in ajax call', 'warning');
+		$app->enqueueMessage('User error in ajax call', 'error');
+
+		$hasError = False;
+		echo new JResponseJson('', 'Standard message in ' . $msg, $hasError);
+
+		$app->close();
+	}
+
+	/**
 		$data['myRequest'] =$_REQUEST;
 		$data['myFile'] =__FILE__;
 		$data['myLine'] ='Line '.__LINE__;

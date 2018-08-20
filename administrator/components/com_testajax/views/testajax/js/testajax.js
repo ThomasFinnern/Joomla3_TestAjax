@@ -36,6 +36,7 @@ jQuery(document).ready(function ($) {
     var urlAjaxErrorJexit = 'index.php?option=com_testajax&task=testajax.AjaxErrorJexit' + Token;
     var urlAjaxWarning = 'index.php?option=com_testajax&task=testajax.AjaxWarning' + Token;
     var urlAjaxNotice = 'index.php?option=com_testajax&task=testajax.AjaxNotice' + Token;
+    var urlAjaxAll = 'index.php?option=com_testajax&task=testajax.AjaxAll' + Token;
 
     //--------------------------------------
     // Function Button click ->increase value
@@ -318,6 +319,38 @@ jQuery(document).ready(function ($) {
             });
 
         alert('buttonAjaxNotice.on click: '); // + JSON.stringify($(this)));
+    });
+
+    var buttonAjaxAll = $('#btnAjaxAll');
+    buttonAjaxAll.on('click', function (e) {
+        alert('btnAjaxAll');
+
+        //
+        var formData = new FormData();
+
+        var jqXHR = jQuery.ajax({
+            url: urlAjaxAll,
+            type: 'POST',
+            contentType: 'json',
+            processData: false,
+            cache: false,
+            // timeout:20000, // 20 seconds timeout (was too short)
+            data: formData
+        })
+            .done(function (eData, textStatus, jqXHR) {
+                alert (': ajax returned in done');
+                ajaxDone ('#btnAjaxAll', eData, textStatus, jqXHR);
+            })
+
+            .fail(function (jqXHR, textStatus, exceptionType) {
+                ajaxFail ('#btnAjaxAll', jqXHR, textStatus, exceptionType);
+            })
+
+            .always(function (eData, textStatus, jqXHR) {
+                ajaxAlways ('#btnAjaxAll', eData, textStatus, jqXHR);
+            });
+
+        alert('buttonAjaxAll.on click: '); // + JSON.stringify($(this)));
     });
 
     // alertType []
