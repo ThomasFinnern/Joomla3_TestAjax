@@ -465,6 +465,20 @@ jQuery(document).ready(function ($) {
 
 
     /**
+    {
+        "success": true,
+        "message": "Standard message in AjaxAll",
+        "messages": {
+        "notice": ["User notice in ajax call"],
+            "warning": ["User warning in ajax call"],
+            "error": ["User error in ajax call"]
+    },
+        "data": ""
+    }
+    /**/
+
+
+    /**
             console.log(': Done with data before json object');
             // find error html text
             alert("A03");
