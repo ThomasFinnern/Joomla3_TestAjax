@@ -154,27 +154,90 @@ jQuery(document).ready(function ($) {
         /*----------------------------------------------------
         On always / complete
         ----------------------------------------------------*/
-
         .always(function (eData, textStatus, jqXHR) {
-            console.log(': ajax now in always section');
-            alert (': ajax now in always section');
-        });
+        })
 
         alert('buttonIncreaseValue.on click: '); // + JSON.stringify($(this)));
     });
 
     var buttonAjaxError = $('#btnAjaxError');
     buttonAjaxError.on('click', function (e) {
+
+        var jqXHR = jQuery.ajax({
+            url: urlAjaxError,
+            type: 'POST',
+            contentType: 'json',
+            processData: false,
+            cache: false,
+            // timeout:20000, // 20 seconds timeout (was too short)
+            data: formData
+        })
+            .done(function (eData, textStatus, jqXHR) {
+                ajaxDone ('#btnAjaxError', eData, textStatus, jqXHR);
+            })
+
+            .fail(function (jqXHR, textStatus, exceptionType) {
+                ajaxFail ('#btnAjaxError', jqXHR, textStatus, exceptionType);
+            })
+
+            .always(function (eData, textStatus, jqXHR) {
+                ajaxAlways ('#btnAjaxError', eData, textStatus, jqXHR);
+            });
+
         alert('buttonAjaxError.on click: '); // + JSON.stringify($(this)));
     });
 
     var buttonAjaxWarning = $('#btnAjaxWarning');
     buttonAjaxWarning.on('click', function (e) {
+
+        var jqXHR = jQuery.ajax({
+            url: urlAjaxWarning,
+            type: 'POST',
+            contentType: 'json',
+            processData: false,
+            cache: false,
+            // timeout:20000, // 20 seconds timeout (was too short)
+            data: formData
+        })
+            .done(function (eData, textStatus, jqXHR) {
+                ajaxDone ('#btnAjaxWarning', eData, textStatus, jqXHR);
+            })
+
+            .fail(function (jqXHR, textStatus, exceptionType) {
+                ajaxFail ('#btnAjaxWarning', jqXHR, textStatus, exceptionType);
+            })
+
+            .always(function (eData, textStatus, jqXHR) {
+                ajaxAlways ('#btnAjaxWarning', eData, textStatus, jqXHR);
+            });
+
         alert('buttonAjaxWarning.on click: '); // + JSON.stringify($(this)));
     });
 
     var buttonAjaxNotice = $('#btnAjaxNotice');
     buttonAjaxNotice.on('click', function (e) {
+
+        var jqXHR = jQuery.ajax({
+            url: urlAjaxNotice,
+            type: 'POST',
+            contentType: 'json',
+            processData: false,
+            cache: false,
+            // timeout:20000, // 20 seconds timeout (was too short)
+            data: formData
+        })
+            .done(function (eData, textStatus, jqXHR) {
+                ajaxDone ('#btnAjaxNotice', eData, textStatus, jqXHR);
+            })
+
+            .fail(function (jqXHR, textStatus, exceptionType) {
+                ajaxFail ('#btnAjaxNotice', jqXHR, textStatus, exceptionType);
+            })
+
+            .always(function (eData, textStatus, jqXHR) {
+                ajaxAlways ('#btnAjaxNotice', eData, textStatus, jqXHR);
+            });
+
         alert('buttonAjaxNotice.on click: '); // + JSON.stringify($(this)));
     });
 
@@ -195,7 +258,7 @@ jQuery(document).ready(function ($) {
         return OutText;              // The function returns the product of p1 and p2
     }
 
-    function CreateSucessHtml(displayText) {
+    function CreateSuccessHtml(displayText) {
 
         var OutText = CreateAlertHtml(displayText, 'Sucess', 'alert-success')
 
@@ -308,7 +371,7 @@ jQuery(document).ready(function ($) {
             alert("C02: found data: '" + JSON.stringify(eData) + "'");
 
             /**
-             var OutHtml = CreateSucessHtml (eData);
+             var OutHtml = CreateSuccessHtml (eData);
              messagesArea.append(OutHtml);
 
              var OutHtml = CreateNoticeHtml (eData);
@@ -324,8 +387,41 @@ jQuery(document).ready(function ($) {
     return jData;
     /**/
 
+    // ajaxDone
+    //.done(function (eData, textStatus, jqXHR) {
+    function ajaxDone (originText, eData, textStatus, jqXHR) {
+        console.log(originText + ': ajax now in done section');
+        alert (originText + ': ajax now in done section');
+
+        /**
+        // append message to be viewed
+        var messagesArea = $('#messagesArea');
+        var OutHtml = CreateErrorHtml(message);
+        messagesArea.append(OutHtml);
+        /**/
+
+        alert ("textStatus: " + textStatus);
+        alert ("edata: " + eData);
+    }
+
+    // ajaxFail
+    //.fail(function (jqXHR, textStatus, exceptionType) {
+    function ajaxFail (originText, jqXHR, textStatus, exceptionType) {
+        console.log(originText + ': ajax now in fail section');
+        alert (originText + ': ajax now in fail section');
+
+        alert ("exceptionType: " + exceptionType);
+        alert ("textStatus: " + textStatus);
+
+    }
+
+    // ajaxAlways
+    //.always(function (eData, textStatus, jqXHR) {
+    function ajaxAlways (originText, eData, textStatus, jqXHR) {
+        console.log(originText + ': ajax now in always section');
+        alert (originText + ': ajax now in always section');
 
 
-
+    }
 
 }) // ready

@@ -102,19 +102,34 @@ class TestAjaxControllerTestAjax extends AdminController
 	/**/
 	function AjaxError()
 	{
+		$msg = 'AjaxError';
 
+		$app = JFactory::getApplication();
+		$app->enqueueMessage('User error in ajax call', 'error');
+		$hasError = True;
+		echo new JResponseJson('', 'Standard message in ' . $msg, $hasError);
 	}
 
 	/**/
 	function AjaxWarning()
 	{
+		$msg = 'AjaxWarning';
 
+		$app = JFactory::getApplication();
+		$app->enqueueMessage('User warning in ajax call', 'warning');
+		$hasError = False;
+		echo new JResponseJson('', 'Standard message in ' . $msg, $hasError);
 	}
 
 	/**/
 	function AjaxNotice()
 	{
+		$msg = 'AjaxNotice';
 
+		$app = JFactory::getApplication();
+		$app->enqueueMessage('User notice in ajax call', 'notice');
+		$hasError = False;
+		echo new JResponseJson('', 'Standard message in ' . $msg, $hasError);
 	}
 
 		/**
@@ -130,9 +145,6 @@ class TestAjaxControllerTestAjax extends AdminController
 		$task_failed = false;
 		echo new JResponseJson($data, 'My main response message',$task_failed);
 		/**/
-
-
-
 }
 
 
