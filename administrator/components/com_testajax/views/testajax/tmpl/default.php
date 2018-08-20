@@ -59,7 +59,6 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
 
         <br><br>
 
-        <div class="row">
         <buttonAjaxError
                 id="btnAjaxError"
                 type="button"
@@ -94,10 +93,7 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
             Ajax error Jexit
         </buttonAjaxErrorJexit>
 
-        <!--br><br-->
-
-        </div>
-        <br>
+        <br><br>
 
         <buttonAjaxWarning
                 id="btnAjaxWarning"
@@ -121,11 +117,14 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
             Ajax Notice
         </buttonAjaxNotice>
 
+        <br><br>
+
         <buttonAjaxAll
                 id="btnAjaxAll"
                 type="button"
-                class="btn btn-danger"
+                class="btn"
                 title="On click creates error, warning and notice on ajax call on the server side"
+                style="background-color:DarkGoldenRod;color:white"
         >
             <span class="icon-copy" aria-hidden="true"></span>
             Ajax all at once
