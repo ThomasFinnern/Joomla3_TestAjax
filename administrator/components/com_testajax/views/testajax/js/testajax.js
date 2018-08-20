@@ -48,7 +48,7 @@ jQuery(document).ready(function ($) {
         // Handle number value from user
         //--------------------------------------
 
-        // for function sendFileToServer
+        //
         var formData = new FormData();
 
         // var test = jQuery('#jform_ajaxTestValue');
@@ -162,6 +162,10 @@ jQuery(document).ready(function ($) {
 
     var buttonAjaxError = $('#btnAjaxError');
     buttonAjaxError.on('click', function (e) {
+        alert('btnAjaxError');
+
+        //
+        var formData = new FormData();
 
         var jqXHR = jQuery.ajax({
             url: urlAjaxError,
@@ -173,6 +177,7 @@ jQuery(document).ready(function ($) {
             data: formData
         })
             .done(function (eData, textStatus, jqXHR) {
+                alert (': ajax returned in done');
                 ajaxDone ('#btnAjaxError', eData, textStatus, jqXHR);
             })
 
@@ -187,9 +192,77 @@ jQuery(document).ready(function ($) {
         alert('buttonAjaxError.on click: '); // + JSON.stringify($(this)));
     });
 
+    var buttonAjaxErrorDie = $('#btnAjaxErrorDie');
+    buttonAjaxErrorDie.on('click', function (e) {
+        alert('btnAjaxErrorDie');
+
+        //
+        var formData = new FormData();
+
+        var jqXHR = jQuery.ajax({
+            url: urlAjaxErrorDie,
+            type: 'POST',
+            contentType: 'json',
+            processData: false,
+            cache: false,
+            // timeout:20000, // 20 seconds timeout (was too short)
+            data: formData
+        })
+            .done(function (eData, textStatus, jqXHR) {
+                alert (': ajax returned in done');
+                ajaxDone ('#btnAjaxErrorDie', eData, textStatus, jqXHR);
+            })
+
+            .fail(function (jqXHR, textStatus, exceptionType) {
+                ajaxFail ('#btnAjaxErrorDie', jqXHR, textStatus, exceptionType);
+            })
+
+            .always(function (eData, textStatus, jqXHR) {
+                ajaxAlways ('#btnAjaxErrorDie', eData, textStatus, jqXHR);
+            });
+
+        alert('buttonAjaxErrorDie.on click: '); // + JSON.stringify($(this)));
+    });
+
+    var buttonAjaxErrorJexit = $('#btnAjaxErrorJexit');
+    buttonAjaxErrorJexit.on('click', function (e) {
+        alert('btnAjaxErrorJexit');
+
+        //
+        var formData = new FormData();
+
+        var jqXHR = jQuery.ajax({
+            url: urlAjaxErrorJexit,
+            type: 'POST',
+            contentType: 'json',
+            processData: false,
+            cache: false,
+            // timeout:20000, // 20 seconds timeout (was too short)
+            data: formData
+        })
+            .done(function (eData, textStatus, jqXHR) {
+                alert (': ajax returned in done');
+                ajaxDone ('#btnAjaxErrorJexit', eData, textStatus, jqXHR);
+            })
+
+            .fail(function (jqXHR, textStatus, exceptionType) {
+                ajaxFail ('#btnAjaxErrorJexit', jqXHR, textStatus, exceptionType);
+            })
+
+            .always(function (eData, textStatus, jqXHR) {
+                ajaxAlways ('#btnAjaxErrorJexit', eData, textStatus, jqXHR);
+            });
+
+        alert('buttonAjaxErrorJexit.on click: '); // + JSON.stringify($(this)));
+    });
+
     var buttonAjaxWarning = $('#btnAjaxWarning');
     buttonAjaxWarning.on('click', function (e) {
 
+        //
+        var formData = new FormData();
+
+        alert('btnAjaxWarning');
         var jqXHR = jQuery.ajax({
             url: urlAjaxWarning,
             type: 'POST',
@@ -200,6 +273,7 @@ jQuery(document).ready(function ($) {
             data: formData
         })
             .done(function (eData, textStatus, jqXHR) {
+                alert (': ajax returned in done');
                 ajaxDone ('#btnAjaxWarning', eData, textStatus, jqXHR);
             })
 
@@ -216,6 +290,10 @@ jQuery(document).ready(function ($) {
 
     var buttonAjaxNotice = $('#btnAjaxNotice');
     buttonAjaxNotice.on('click', function (e) {
+        alert('btnAjaxNotice');
+
+        //
+        var formData = new FormData();
 
         var jqXHR = jQuery.ajax({
             url: urlAjaxNotice,
@@ -227,6 +305,7 @@ jQuery(document).ready(function ($) {
             data: formData
         })
             .done(function (eData, textStatus, jqXHR) {
+                alert (': ajax returned in done');
                 ajaxDone ('#btnAjaxNotice', eData, textStatus, jqXHR);
             })
 

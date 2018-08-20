@@ -108,6 +108,8 @@ class TestAjaxControllerTestAjax extends AdminController
 		$app->enqueueMessage('User error in ajax call', 'error');
 		$hasError = True;
 		echo new JResponseJson('', 'Standard message in ' . $msg, $hasError);
+
+		$app->close();
 	}
 
 	/**/
@@ -119,6 +121,8 @@ class TestAjaxControllerTestAjax extends AdminController
 		$app->enqueueMessage('User warning in ajax call', 'warning');
 		$hasError = False;
 		echo new JResponseJson('', 'Standard message in ' . $msg, $hasError);
+
+		$app->close();
 	}
 
 	/**/
@@ -130,6 +134,8 @@ class TestAjaxControllerTestAjax extends AdminController
 		$app->enqueueMessage('User notice in ajax call', 'notice');
 		$hasError = False;
 		echo new JResponseJson('', 'Standard message in ' . $msg, $hasError);
+
+		$app->close();
 	}
 
 		/**

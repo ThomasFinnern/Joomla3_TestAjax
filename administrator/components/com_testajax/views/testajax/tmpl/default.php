@@ -49,7 +49,7 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
 
         <buttonIncreaseValue
                 id="btnIncreaseValue"
-                type="buttonIncreaseValue"
+                type="button"
                 class="btn btn-success"
                 title="On click increases test value with call to server over ajax. The PHP on the server increases the value and returns it"
         >
@@ -59,9 +59,10 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
 
         <br><br>
 
+        <div class="row">
         <buttonAjaxError
                 id="btnAjaxError"
-                type="buttonIncreaseValue"
+                type="button"
                 class="btn btn-danger"
                 title="On click creates an error on ajax call on the server side"
         >
@@ -69,11 +70,38 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
             Ajax error
         </buttonAjaxError>
 
-        <br><br>
+        <!-- br><br -->
+
+        <buttonAjaxErrorDie
+                id="btnAjaxErrorDie"
+                type="button"
+                class="btn btn-danger"
+                title="On click creates an error on ajax call on the server side"
+        >
+            <span class="icon-copy" aria-hidden="true"></span>
+            Ajax error die
+        </buttonAjaxErrorDie>
+
+        <!--br><br-->
+
+        <buttonAjaxErrorJexit
+                id="btnAjaxErrorJexit"
+                type="button"
+                class="btn btn-danger"
+                title="On click creates an error on ajax call on the server side"
+        >
+            <span class="icon-copy" aria-hidden="true"></span>
+            Ajax error Jexit
+        </buttonAjaxErrorJexit>
+
+        <!--br><br-->
+
+        </div>
+        <br>
 
         <buttonAjaxWarning
                 id="btnAjaxWarning"
-                type="buttonIncreaseValue"
+                type="button"
                 class="btn btn-warning"
                 title="On click creates a warning on ajax call on the server side"
         >
@@ -85,7 +113,7 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
 
         <buttonAjaxNotice
                 id="btnAjaxNotice"
-                type="buttonIncreaseValue"
+                type="button"
                 class="btn btn-info"
                 title="On click creates an error on ajax call on the server side"
         >
@@ -93,7 +121,19 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
             Ajax Notice
         </buttonAjaxNotice>
 
-	<?php echo JHtml::_('form.token'); ?>
+        <buttonAjaxAll
+                id="btnAjaxAll"
+                type="button"
+                class="btn btn-danger"
+                title="On click creates error, warning and notice on ajax call on the server side"
+        >
+            <span class="icon-copy" aria-hidden="true"></span>
+            Ajax all at once
+        </buttonAjaxAll>
+
+        <br><br>
+
+        <?php echo JHtml::_('form.token'); ?>
     </form>
 
 </div>
