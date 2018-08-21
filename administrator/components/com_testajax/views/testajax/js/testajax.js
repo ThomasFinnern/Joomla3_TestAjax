@@ -90,26 +90,33 @@ jQuery(document).ready(function ($) {
             alert ('textStatus: ' + textStatus);
 
             var jData = '';
+            var UnexpectedErrorMessage = '';
 
             //--- Handle PHP Error and notification messages first (separate) -------------------------
-            var extract = extractDataMessages(eData);
+
+            UnexpectedErrorMessage, jData = extractDataMessages(eData);
 
             alert ("D01");
-            jData = extract.Data;
+            writeUnexpectedErrorMessage (UnexpectedErrorMessage);
+
             alert ("D02");
-            writeUnexpectedErrorMessage (extract.Message);
-            alert ("D03");
-            alert ('extract.Message: ' + extract.Message);
-            alert ("D04");
-            alert ('jData: "' + JData + '"');
-            alert ("D05");
-            writeStandardMessages (jData);
 
             // Check that JResponseJson data structure may be available
             if (!'success' in jData) {
                 alert('returned wrong data');
                 return;
             }
+
+            alert ("D03");
+            writeDataMessages (jData);
+            alert ("D04");
+
+
+
+            alert ('extract.Message: ' + extract.Message);
+            alert ("D04");
+            alert ('jData: "' + JData + '"');
+            alert ("D05");
 
             alert ("E01");
 
@@ -442,8 +449,6 @@ jQuery(document).ready(function ($) {
 
 //        alert ("EE02");
 
-
-
         // No Json data
         if (StartIdx < 0) {
             alert ("EE03");
@@ -477,13 +482,13 @@ jQuery(document).ready(function ($) {
                 jData = jQuery.parseJSON(jsonText);
                 alert ("EE09");
             }
-
         }
 
-        return {
+        /** return {
             Data: jData,
             Message: errMessage
-        };
+         /**/
+        return errMessage, jData;
     }
 
     function writeUnexpectedErrorMessage (message) {
@@ -494,34 +499,40 @@ jQuery(document).ready(function ($) {
     }
 
 
-    function writeStandardMessages (jData) {
+    function writeDataMessages (jData) {
         var messagesArea = $('#messagesArea');
         var OutHtml = "";
         var MainMessage = "";
-        var JMessages = {}; // empty object
+        var JMessages = {};
 
+        alaert ('J01');
         if (typeof jData === "undefined") {
             return;
         }
+        alaert ('J02');
         if (typeof jData.message !== "undefined") {
             MainMessage = jData.message;
         }
-
+/**
         if (typeof jData.messages !== "undefined") {
+            subMessages = jData.messages;
+            for each (var subMessage in subMessages) {
+                alert ("SubMessage: " +  JSON.stringify (subMessage))
+            }
 
+        }
+//            CreateErrorHtml(message);
+ /**/
+        alaert ('J03');
+        if (typeof jData.messages !== "undefined") {
+            subMessages = jData.messages;
+            subMessages.forEach(function (subMessage) {
+                // console.log(entry);
+                alert ("SubMessage: " +  JSON.stringify (subMessage))
+            });
+        }
 
-
-
-
-
-            CreateErrorHtml(message);
-
-
-        messagesArea.append(OutHtml);
-
-
-
-
+//        messagesArea.append(OutHtml);
     }
 
     /**
