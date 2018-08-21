@@ -75,7 +75,7 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
                 id="btnAjaxErrorDie"
                 type="button"
                 class="btn btn-danger"
-                title="On click creates an error on ajax call on the server side"
+                title="On click creates an error on ajax call on the server side with a die statemant"
         >
             <span class="icon-copy" aria-hidden="true"></span>
             Ajax error die
@@ -87,11 +87,21 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
                 id="btnAjaxErrorJexit"
                 type="button"
                 class="btn btn-danger"
-                title="On click creates an error on ajax call on the server side"
+                title="On click creates an error on ajax call on the server side with a Jexit statemant"
         >
             <span class="icon-copy" aria-hidden="true"></span>
             Ajax error Jexit
         </buttonAjaxErrorJexit>
+
+        <buttonAjaxErrorInCode
+                id="btnAjaxErrorInCode"
+                type="button"
+                class="btn btn-danger"
+                title="On click creates an error on ajax call on the server side with a code error"
+        >
+            <span class="icon-copy" aria-hidden="true"></span>
+            Ajax error from php code
+        </buttonAjaxErrorInCode>
 
         <br><br>
 

@@ -41,6 +41,12 @@ class TestAjaxControllerTestAjax extends AdminController
 			}
 			/**/
 
+			/* Test : remove later */
+			$input = JFactory::getApplication()->input;
+			$number = $input->get('strNumberX', 0, 'INT');
+			$result = 15 / $number;
+			/**/
+
 			// Data from FormData
 			$input = JFactory::getApplication()->input;
 			$number = $input->get('strNumber', 0, 'INT');
@@ -108,6 +114,25 @@ class TestAjaxControllerTestAjax extends AdminController
 		$app->enqueueMessage('User error in ajax call', 'error');
 		$hasError = True;
 		echo new JResponseJson('', 'Standard message in ' . $msg, $hasError);
+
+		$app->close();
+	}
+
+	/**/
+	function AjaxErrorInCode()
+	{
+		$msg = 'AjaxErrorInCode';
+
+		$app = JFactory::getApplication();
+
+		// Data from FormData
+		$input = JFactory::getApplication()->input;
+		$number = $input->get('strNumber', 0, 'INT');
+
+		$result = 15 / $number;
+
+		$hasError = false;
+		echo new JResponseJson('', 'Otherwise OK: Standard message in ' . $msg, $hasError);
 
 		$app->close();
 	}
