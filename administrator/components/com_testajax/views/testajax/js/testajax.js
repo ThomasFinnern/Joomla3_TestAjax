@@ -56,13 +56,9 @@ jQuery(document).ready(function ($) {
         // var test = jQuery('#jform_ajaxTestValue');
         var test = jQuery('input[name="jform[ajaxTestValue]"]');
 
-        jQuery('input[name="jform[ajaxTestValue]"]').val('20');
+        // jQuery('input[name="jform[ajaxTestValue]"]').val('20');
 
         formData.strNumber = jQuery('#jform_ajaxTestValue').val();
-        // formData.strNumber = jQuery('input[name="jform[ajaxTestValue]"]').val();
-
-//        alert ('strNumber: "' + formData.strNumber + '"');
-//        alert ('urlIncreaseValue: "' + urlIncreaseValue + '"');
 
         //--------------------------------------
         //
@@ -89,57 +85,63 @@ jQuery(document).ready(function ($) {
             alert (': ajax returned in done');
             alert ('textStatus: ' + textStatus);
 
-            var jData = '';
+            var jData = {};
             var UnexpectedErrorMessage = '';
 
             //--- Handle PHP Error and notification messages first (separate) -------------------------
 
-            UnexpectedErrorMessage, jData = extractDataMessages(eData);
+            // returns extract.preMessage, extract.jData
+            var extract = extractDataMessages(eData);
+            jData = extract.jData;
 
             alert ("D01");
-            writeUnexpectedErrorMessage (UnexpectedErrorMessage);
+            writeUnexpectedErrorMessage (extract.Message);
 
-            alert ("D02");
+            if (typeof jData !== "undefined") {
 
-            // Check that JResponseJson data structure may be available
-            if (!'success' in jData) {
-                alert('returned wrong data');
-                return;
-            }
+                alert ("D02");
 
-            alert ("D03");
-            writeDataMessages (jData);
-            alert ("D04");
+                // Check that JResponseJson data structure may be available
+                if (typeof jData.success === "undefined") {
+                    alert('returned wrong data');
+                    return;
+                }
+
+                alert ("jData.success: " + jData.success);
+
+                alert("D03");
+                writeDataMessages(jData);
+                alert("D04");
 
 
+                alert('extract.Message: ' + extract.Message);
+                alert("D04");
+                alert('jData: "' + JData + '"');
+                alert("D05");
 
-            alert ('extract.Message: ' + extract.Message);
-            alert ("D04");
-            alert ('jData: "' + JData + '"');
-            alert ("D05");
+                alert("E01");
 
-            alert ("E01");
+                // ToDo: Handle JOOMLA Error and notification messages -> inside Json
 
-            // ToDo: Handle JOOMLA Error and notification messages -> inside Json
+                // jData.success
+                // jData.messsage
+                // jData.messages
+                // jData.data
 
-            // jData.success
-            // jData.messsage
-            // jData.messages
-            // jData.data
+                //--- success -------------------------
 
-            //--- success -------------------------
-
-            // Successful result
-            if (jData.success == true) {
-                alert ("F01");
-                alert('XXX. Result success 05' + ' New Number: "' + jData.data.number + '"');
-                alert ("F02");
-                jQuery('input[name="jform[ajaxTestValue]"]').val(jData.data.number);
-                alert ("F03");
-            }
-            else {
-                alert ("05");
-                alert('XXX. No success 05');
+                // Successful result
+                if (jData.success == true) {
+                    alert("F01");
+                    alert('XXX. Result success 05' + ' New Number: "' + jData.data.number + '"');
+                    alert("F02");
+                    jQuery('input[name="jform[ajaxTestValue]"]').val(jData.data.number);
+                    alert("F03");
+                }
+                else {
+                    alert("05");
+                    alert('XXX. No success 05');
+                }
             }
         })
 
@@ -438,64 +440,67 @@ jQuery(document).ready(function ($) {
 
     function extractDataMessages(eData) {
         // Pre init
-        var jData = "";
-        var errMessage = "";
+        var jData = {};
+        var preMessage = "";
 
-//        alert ("EE01");
+//        alert ("EX01");
 
         // is first part php error- or debug- echo string ?
         // find start of json
         var StartIdx = eData.indexOf('{"');
 
-//        alert ("EE02");
+//        alert ("EX02");
 
         // No Json data
         if (StartIdx < 0) {
-            alert ("EE03");
+            alert ("EX03");
 
-            errMessage = eData;
+            preMessage = eData;
         }
         else {
-            alert ("EE04");
+            var jsonText;
 
-            // Jquery starts at the beginning, no additional message
-            if (StartIdx == 0) {
-                alert ("EE05");
-                alert("eData: '" + eData + "'");
-                alert ("EE06");
+            alert ("EX04");
 
-                jData = jQuery.parseJSON(eData);
-
-            }
-            else {
-                alert ("EE06");
-
-                // StartIdx > 0
+            // Unexpected text in front to JSON data
+            if (StartIdx > 0) {
+                alert ("EX05");
                 // message part and json data existing
-                errMessage = eData.substring(0, StartIdx - 1);
+                preMessage = eData.substring(0, StartIdx - 1);
 
-                alert ("EE07");
+                alert ("EX06");
 
-                var jsonText = eData.substring(StartIdx);
-                alert ("EE08");
-
-                jData = jQuery.parseJSON(jsonText);
-                alert ("EE09");
+                jsonText = eData.substring(StartIdx);
             }
+            else
+            {
+                alert ("EX07");
+               jsonText = eData;
+            }
+
+            alert ("EX08");
+            jData = jQuery.parseJSON(jsonText);
+
         }
 
-        /** return {
-            Data: jData,
-            Message: errMessage
+        alert ("EX20");
+        /**/
+        return {
+            preMessage: preMessage,
+            jData: jData
+        }
          /**/
-        return errMessage, jData;
+        // return preMessage, jData;
     }
 
     function writeUnexpectedErrorMessage (message) {
-        // append message to be viewed
-        var messagesArea = $('#messagesArea');
-        var OutHtml = CreateErrorHtml(message);
-        messagesArea.append(OutHtml);
+
+        if (typeof message !== "undefined") {
+            // append message to be viewed
+            var messagesArea = $('#messagesArea');
+            var OutHtml = CreateErrorHtml(message);
+            messagesArea.append(OutHtml);
+        }
     }
 
 
@@ -505,11 +510,11 @@ jQuery(document).ready(function ($) {
         var MainMessage = "";
         var JMessages = {};
 
-        alaert ('J01');
+        alert ('M01');
         if (typeof jData === "undefined") {
             return;
         }
-        alaert ('J02');
+        alert ('M02');
         if (typeof jData.message !== "undefined") {
             MainMessage = jData.message;
         }
@@ -523,7 +528,7 @@ jQuery(document).ready(function ($) {
         }
 //            CreateErrorHtml(message);
  /**/
-        alaert ('J03');
+        alert ('M03');
         if (typeof jData.messages !== "undefined") {
             subMessages = jData.messages;
             subMessages.forEach(function (subMessage) {
@@ -533,6 +538,7 @@ jQuery(document).ready(function ($) {
         }
 
 //        messagesArea.append(OutHtml);
+        alert ('M20');
     }
 
     /**
@@ -590,6 +596,9 @@ jQuery(document).ready(function ($) {
         console.log(originText + ': ajax now in done section');
         alert (originText + ': ajax now in done section');
 
+        alert ("textStatus: " + textStatus);
+        alert ("edata: " + eData);
+
         /**
         // append message to be viewed
         var messagesArea = $('#messagesArea');
@@ -597,8 +606,23 @@ jQuery(document).ready(function ($) {
         messagesArea.append(OutHtml);
         /**/
 
-        alert ("textStatus: " + textStatus);
-        alert ("edata: " + eData);
+            // returns extract.preMessage, extract.jData
+        var extract = extractDataMessages(eData);
+        JData = extract.jData;
+        writeUnexpectedErrorMessage (extract.Message);
+
+        if (typeof jData !== "undefined") {
+
+            // Check that JResponseJson data structure may be available
+            if (typeof jData.success === "undefined") {
+                alert('returned wrong data');
+                return;
+            }
+
+            alert ("jData.success: " + jData.success);
+
+            writeDataMessages (jData);
+        }
     }
 
     // ajaxFail
