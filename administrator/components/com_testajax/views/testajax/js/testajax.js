@@ -114,11 +114,12 @@ jQuery(document).ready(function ($) {
                 alert("D04");
 
 
-                alert('extract.Message: ' + extract.Message);
+                //alert('extract.Message: ' + extract.Message);
+                /**
                 alert("D04");
-                alert('jData: "' + JData + '"');
+                alert('jData extracted: "' + jData + '"');
                 alert("D05");
-
+                /**/
                 alert("E01");
 
                 // ToDo: Handle JOOMLA Error and notification messages -> inside Json
@@ -443,7 +444,7 @@ jQuery(document).ready(function ($) {
         var jData = {};
         var preMessage = "";
 
-//        alert ("EX01");
+        alert ("EX01");
 
         // is first part php error- or debug- echo string ?
         // find start of json
@@ -453,37 +454,42 @@ jQuery(document).ready(function ($) {
 
         // No Json data
         if (StartIdx < 0) {
-            alert ("EX03");
+//            alert ("EX03");
 
             preMessage = eData;
         }
         else {
             var jsonText;
 
-            alert ("EX04");
+//            alert ("EX04");
 
             // Unexpected text in front to JSON data
             if (StartIdx > 0) {
-                alert ("EX05");
+//                alert ("EX05");
                 // message part and json data existing
                 preMessage = eData.substring(0, StartIdx - 1);
 
-                alert ("EX06");
+//                alert ("EX06");
 
                 jsonText = eData.substring(StartIdx);
             }
             else
             {
-                alert ("EX07");
+//                alert ("EX07");
                jsonText = eData;
             }
 
-            alert ("EX08");
+//            alert ("EX08");
             jData = jQuery.parseJSON(jsonText);
 
         }
 
         alert ("EX20");
+        alert('jData extracted: "' + JSON.stringify (jData) + '"');
+        alert ("EX21");
+        //alert('preMessage extracted: "' + JSON.stringify (preMessage) + '"');
+        alert('preMessage extracted: "' + preMessage + '"');
+        alert ("EX22");
         /**/
         return {
             preMessage: preMessage,
@@ -511,13 +517,35 @@ jQuery(document).ready(function ($) {
         var JMessages = {};
 
         alert ('M01');
+        /**
         if (typeof jData === "undefined") {
             return;
         }
-        alert ('M02');
-        if (typeof jData.message !== "undefined") {
-            MainMessage = jData.message;
+        /**/
+
+        // Jdata empty ?
+        if ( ! jData) {
+            return;
         }
+
+//        alert ('M02');
+        // Message exists
+        if (jData.message) {
+            alert ('M02A');
+            if (typeof jData.message !== "undefined") {
+                alert ('M02B');
+                MainMessage = jData.message;
+//                alert ('M02C');
+                CreateNoticeHtml (MainMessage);
+//                alert ('M02D');
+            }
+        }
+        else
+        {
+            alert ('M02X: No message');
+        }
+
+        /**/
 /**
         if (typeof jData.messages !== "undefined") {
             subMessages = jData.messages;
@@ -529,15 +557,62 @@ jQuery(document).ready(function ($) {
 //            CreateErrorHtml(message);
  /**/
         alert ('M03');
-        if (typeof jData.messages !== "undefined") {
-            subMessages = jData.messages;
-            subMessages.forEach(function (subMessage) {
-                // console.log(entry);
-                alert ("SubMessage: " +  JSON.stringify (subMessage))
-            });
+        // Messages list exists
+        if (jData.messages) {
+            alert ('M03A');
+            if (typeof jData.messages !== "undefined") {
+                alert ('M03B');
+                var subMessages = jData.messages;
+                alert ('M03C');
+                /**
+                subMessages.forEach(function (subMessage) {
+                    alert ('M03E');
+                    // console.log(entry);
+                    alert("SubMessage: " + JSON.stringify(subMessage))
+                    alert ('M03F');
+                });/**/
+                alert("subMessages: " + JSON.stringify(subMessages))
+                /**
+                alert ('subMessages.length: ' + subMessages.length);
+                for (index = 0; index < subMessages.length; ++index) {
+                    alert ('M03E');
+                    var subMessage = subMessages [index];
+                    alert ('M03F');
+                    alert("SubMessage: " + JSON.stringify(subMessage))
+                    alert ('M03G');
+                }
+                /**/
+
+                for (var key in subMessages) {
+                    alert ('M03E');
+                    alert ('key: ' + key);
+                    if (subMessages.hasOwnProperty(key)) {
+                        alert ('M0F');
+                        var val = subMessages[key];
+                        alert ('M0G');
+                        alert ('val: ' + val);
+                    }
+                }
+
+                alert ('M03L');
+            }
+        }
+        else
+        {
+            alert ('M03X: No messages');
         }
 
-//        messagesArea.append(OutHtml);
+        /**
+        else {
+            // At least one message found
+            if (MainMessage)
+            {
+                CreateNoticeHtml (MainMessage);
+            }
+            create
+        }
+        /**/
+
         alert ('M20');
     }
 
@@ -608,7 +683,8 @@ jQuery(document).ready(function ($) {
 
             // returns extract.preMessage, extract.jData
         var extract = extractDataMessages(eData);
-        JData = extract.jData;
+
+        jData = extract.jData;
         writeUnexpectedErrorMessage (extract.Message);
 
         if (typeof jData !== "undefined") {
