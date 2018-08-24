@@ -18,7 +18,7 @@ jQuery(document).ready(function ($) {
 
     // ToDo: Test following with commenting out
     if (typeof FormData === 'undefined') {
-        alert("exit");
+        alert("exit FormData === 'undefined' -> old browser ?");
         return;
     }
 
@@ -82,8 +82,8 @@ jQuery(document).ready(function ($) {
             //alert('done Success: "' + String(eData) + '"')
 
             console.log(': ajax returned in done');
-            alert (': ajax returned in done');
-            alert ('textStatus: ' + textStatus);
+//            alert (': ajax returned in done');
+//            alert ('textStatus: ' + textStatus);
 
             var jData = {};
             var UnexpectedErrorMessage = '';
@@ -94,12 +94,12 @@ jQuery(document).ready(function ($) {
             var extract = extractDataMessages(eData);
             jData = extract.jData;
 
-            alert ("D01");
+//            alert ("D01");
             writeUnexpectedErrorMessage (extract.Message);
 
             if (typeof jData !== "undefined") {
 
-                alert ("D02");
+//                alert ("D02");
 
                 // Check that JResponseJson data structure may be available
                 if (typeof jData.success === "undefined") {
@@ -107,20 +107,20 @@ jQuery(document).ready(function ($) {
                     return;
                 }
 
-                alert ("jData.success: " + jData.success);
+//                alert ("jData.success: " + jData.success);
 
-                alert("D03");
+//                alert("D03");
                 writeDataMessages(jData);
-                alert("D04");
+//                alert("D04");
 
 
-                //alert('extract.Message: ' + extract.Message);
+//                //alert('extract.Message: ' + extract.Message);
                 /**
                 alert("D04");
                 alert('jData extracted: "' + jData + '"');
                 alert("D05");
                 /**/
-                alert("E01");
+//                alert("E01");
 
                 // ToDo: Handle JOOMLA Error and notification messages -> inside Json
 
@@ -133,14 +133,14 @@ jQuery(document).ready(function ($) {
 
                 // Successful result
                 if (jData.success == true) {
-                    alert("F01");
-                    alert('XXX. Result success 05' + ' New Number: "' + jData.data.number + '"');
-                    alert("F02");
+//                    alert("F01");
+//                    alert('XXX. Result success 05' + ' New Number: "' + jData.data.number + '"');
+//                    alert("F02");
                     jQuery('input[name="jform[ajaxTestValue]"]').val(jData.data.number);
-                    alert("F03");
+//                    alert("F03");
                 }
                 else {
-                    alert("05");
+//                    alert("05");
                     alert('XXX. No success 05');
                 }
             }
@@ -164,9 +164,9 @@ jQuery(document).ready(function ($) {
         On always / complete
         ----------------------------------------------------*/
         .always(function (eData, textStatus, jqXHR) {
-        })
+        });
 
-        alert('buttonIncreaseValue.on click: EXIT'); // + JSON.stringify($(this)));
+//        alert('buttonIncreaseValue.on click: EXIT'); // + JSON.stringify($(this)));
     });
 
     var buttonAjaxError = $('#btnAjaxError');
@@ -186,24 +186,24 @@ jQuery(document).ready(function ($) {
             data: formData
         })
             .done(function (eData, textStatus, jqXHR) {
-                alert (': ajax returned in done');
+//                alert (': ajax returned in done');
                 ajaxDone ('#btnAjaxError', eData, textStatus, jqXHR);
             })
 
             .fail(function (jqXHR, textStatus, exceptionType) {
-                ajaxFail ('#btnAjaxError', jqXHR, textStatus, exceptionType);
+//                ajaxFail ('#btnAjaxError', jqXHR, textStatus, exceptionType);
             })
 
             .always(function (eData, textStatus, jqXHR) {
-                ajaxAlways ('#btnAjaxError', eData, textStatus, jqXHR);
+//                ajaxAlways ('#btnAjaxError', eData, textStatus, jqXHR);
             });
 
-        alert('buttonAjaxError.on click: EXIT'); // + JSON.stringify($(this)));
+//        alert('buttonAjaxError.on click: EXIT'); // + JSON.stringify($(this)));
     });
 
     var buttonAjaxErrorDie = $('#btnAjaxErrorDie');
     buttonAjaxErrorDie.on('click', function (e) {
-        alert('btnAjaxErrorDie');
+//        alert('btnAjaxErrorDie');
 
         //
         var formData = new FormData();
@@ -218,7 +218,7 @@ jQuery(document).ready(function ($) {
             data: formData
         })
             .done(function (eData, textStatus, jqXHR) {
-                alert (': ajax returned in done');
+//                alert (': ajax returned in done');
                 ajaxDone ('#btnAjaxErrorDie', eData, textStatus, jqXHR);
             })
 
@@ -230,12 +230,12 @@ jQuery(document).ready(function ($) {
                 ajaxAlways ('#btnAjaxErrorDie', eData, textStatus, jqXHR);
             });
 
-        alert('buttonAjaxErrorDie.on click: EXIT'); // + JSON.stringify($(this)));
+//        alert('buttonAjaxErrorDie.on click: EXIT'); // + JSON.stringify($(this)));
     });
 
     var buttonAjaxErrorJexit = $('#btnAjaxErrorJexit');
     buttonAjaxErrorJexit.on('click', function (e) {
-        alert('btnAjaxErrorJexit');
+//        alert('btnAjaxErrorJexit');
 
         //
         var formData = new FormData();
@@ -250,7 +250,7 @@ jQuery(document).ready(function ($) {
             data: formData
         })
             .done(function (eData, textStatus, jqXHR) {
-                alert (': ajax returned in done');
+//                alert (': ajax returned in done');
                 ajaxDone ('#btnAjaxErrorJexit', eData, textStatus, jqXHR);
             })
 
@@ -262,12 +262,12 @@ jQuery(document).ready(function ($) {
                 ajaxAlways ('#btnAjaxErrorJexit', eData, textStatus, jqXHR);
             });
 
-        alert('buttonAjaxErrorJexit.on click: EXIT'); // + JSON.stringify($(this)));
+//        alert('buttonAjaxErrorJexit.on click: EXIT'); // + JSON.stringify($(this)));
     });
 
     var buttonAjaxErrorInCode = $('#btnAjaxErrorInCode');
     buttonAjaxErrorInCode.on('click', function (e) {
-        alert('btnAjaxErrorInCode');
+//        alert('btnAjaxErrorInCode');
 
         //
         var formData = new FormData();
@@ -282,7 +282,7 @@ jQuery(document).ready(function ($) {
             data: formData
         })
             .done(function (eData, textStatus, jqXHR) {
-                alert (': ajax returned in done');
+//                alert (': ajax returned in done');
                 ajaxDone ('#btnAjaxErrorInCode', eData, textStatus, jqXHR);
             })
 
@@ -294,7 +294,7 @@ jQuery(document).ready(function ($) {
                 ajaxAlways ('#btnAjaxErrorInCode', eData, textStatus, jqXHR);
             });
 
-        alert('buttonAjaxErrorInCode.on click: EXIT'); // + JSON.stringify($(this)));
+//        alert('buttonAjaxErrorInCode.on click: EXIT'); // + JSON.stringify($(this)));
     });
 
     var buttonAjaxWarning = $('#btnAjaxWarning');
@@ -303,7 +303,7 @@ jQuery(document).ready(function ($) {
         //
         var formData = new FormData();
 
-        alert('btnAjaxWarning');
+//        alert('btnAjaxWarning');
         var jqXHR = jQuery.ajax({
             url: urlAjaxWarning,
             type: 'POST',
@@ -314,7 +314,7 @@ jQuery(document).ready(function ($) {
             data: formData
         })
             .done(function (eData, textStatus, jqXHR) {
-                alert (': ajax returned in done');
+//                alert (': ajax returned in done');
                 ajaxDone ('#btnAjaxWarning', eData, textStatus, jqXHR);
             })
 
@@ -326,12 +326,12 @@ jQuery(document).ready(function ($) {
                 ajaxAlways ('#btnAjaxWarning', eData, textStatus, jqXHR);
             });
 
-        alert('buttonAjaxWarning.on click: EXIT'); // + JSON.stringify($(this)));
+//        alert('buttonAjaxWarning.on click: EXIT'); // + JSON.stringify($(this)));
     });
 
     var buttonAjaxNotice = $('#btnAjaxNotice');
     buttonAjaxNotice.on('click', function (e) {
-        alert('btnAjaxNotice');
+//        alert('btnAjaxNotice');
 
         //
         var formData = new FormData();
@@ -346,7 +346,7 @@ jQuery(document).ready(function ($) {
             data: formData
         })
             .done(function (eData, textStatus, jqXHR) {
-                alert (': ajax returned in done');
+//                alert (': ajax returned in done');
                 ajaxDone ('#btnAjaxNotice', eData, textStatus, jqXHR);
             })
 
@@ -358,12 +358,12 @@ jQuery(document).ready(function ($) {
                 ajaxAlways ('#btnAjaxNotice', eData, textStatus, jqXHR);
             });
 
-        alert('buttonAjaxNotice.on click: EXIT'); // + JSON.stringify($(this)));
+//        alert('buttonAjaxNotice.on click: EXIT'); // + JSON.stringify($(this)));
     });
 
     var buttonAjaxAll = $('#btnAjaxAll');
     buttonAjaxAll.on('click', function (e) {
-        alert('btnAjaxAll');
+//        alert('btnAjaxAll');
 
         //
         var formData = new FormData();
@@ -378,7 +378,7 @@ jQuery(document).ready(function ($) {
             data: formData
         })
             .done(function (eData, textStatus, jqXHR) {
-                alert (': ajax returned in done');
+//                alert (': ajax returned in done');
                 ajaxDone ('#btnAjaxAll', eData, textStatus, jqXHR);
             })
 
@@ -390,7 +390,7 @@ jQuery(document).ready(function ($) {
                 ajaxAlways ('#btnAjaxAll', eData, textStatus, jqXHR);
             });
 
-        alert('buttonAjaxAll.on click: EXIT'); // + JSON.stringify($(this)));
+//        alert('buttonAjaxAll.on click: EXIT'); // + JSON.stringify($(this)));
     });
 
     // alertType []
@@ -403,11 +403,11 @@ jQuery(document).ready(function ($) {
 
         OutText += '<div class="alert ' + classAddition + ' alert-block">';
         OutText += '    <button type="button" class="close" data-dismiss="alert">&times;</button>';
-        OutText += '    <h4>' + alertType + '!</h4>';
-        OutText += '    ' + displayText + ' :: ' + ActTime ;
+        OutText += '    <h4>'  + ActTime + '  ' + alertType + '!</h4>';
+        OutText += '    ' + displayText;
         OutText += '</div>';
 
-        return OutText;              // The function returns the product of p1 and p2
+        return OutText;
     }
 
     function CreateSuccessHtml(displayText) {
@@ -439,12 +439,25 @@ jQuery(document).ready(function ($) {
     }
 
 
+    /**
+     {
+         "success": true,
+         "message": "Standard message in AjaxAll",
+         "messages": {
+         "notice": ["User notice in ajax call"],
+             "warning": ["User warning in ajax call"],
+             "error": ["User error in ajax call"]
+         },
+         "data": ""
+     }
+     /**/
+
     function extractDataMessages(eData) {
         // Pre init
         var jData = {};
         var preMessage = "";
 
-        alert ("EX01");
+//        alert ("EX01");
 
         // is first part php error- or debug- echo string ?
         // find start of json
@@ -484,12 +497,12 @@ jQuery(document).ready(function ($) {
 
         }
 
-        alert ("EX20");
-        alert('jData extracted: "' + JSON.stringify (jData) + '"');
-        alert ("EX21");
-        //alert('preMessage extracted: "' + JSON.stringify (preMessage) + '"');
-        alert('preMessage extracted: "' + preMessage + '"');
-        alert ("EX22");
+//        alert ("EX20");
+//        alert('jData extracted: "' + JSON.stringify (jData) + '"');
+//        alert ("EX21");
+//        //alert('preMessage extracted: "' + JSON.stringify (preMessage) + '"');
+//        alert('preMessage extracted: "' + preMessage + '"');
+//        alert ("EX22");
         /**/
         return {
             preMessage: preMessage,
@@ -515,91 +528,91 @@ jQuery(document).ready(function ($) {
         var OutHtml = "";
         var MainMessage = "";
         var JMessages = {};
+        var OutHtml = "";
+        messagesArea.append(OutHtml);
 
-        alert ('M01');
+//        alert ('M01');
         /**
         if (typeof jData === "undefined") {
             return;
         }
         /**/
 
-        // Jdata empty ?
+        // jdata empty ?
         if ( ! jData) {
             return;
         }
 
-//        alert ('M02');
         // Message exists
         if (jData.message) {
-            alert ('M02A');
+//            alert ('M02A');
             if (typeof jData.message !== "undefined") {
-                alert ('M02B');
+//                alert ('M02B');
                 MainMessage = jData.message;
 //                alert ('M02C');
-                CreateNoticeHtml (MainMessage);
-//                alert ('M02D');
+                if (!jData.messages) {
+
+                    OutHtml = CreateNoticeHtml(MainMessage);
+                    messagesArea.append(OutHtml);
+//                    alert ('M02D');
+                }
             }
         }
         else
         {
-            alert ('M02X: No message');
+//            alert ('M02X: No message');
         }
 
-        /**/
-/**
-        if (typeof jData.messages !== "undefined") {
-            subMessages = jData.messages;
-            for each (var subMessage in subMessages) {
-                alert ("SubMessage: " +  JSON.stringify (subMessage))
-            }
-
-        }
-//            CreateErrorHtml(message);
  /**/
-        alert ('M03');
+//      alert ('M03');
         // Messages list exists
         if (jData.messages) {
-            alert ('M03A');
+//            alert ('M03A');
             if (typeof jData.messages !== "undefined") {
-                alert ('M03B');
+//                alert ('M03B');
                 var subMessages = jData.messages;
-                alert ('M03C');
-                /**
-                subMessages.forEach(function (subMessage) {
-                    alert ('M03E');
-                    // console.log(entry);
-                    alert("SubMessage: " + JSON.stringify(subMessage))
-                    alert ('M03F');
-                });/**/
-                alert("subMessages: " + JSON.stringify(subMessages))
-                /**
-                alert ('subMessages.length: ' + subMessages.length);
-                for (index = 0; index < subMessages.length; ++index) {
-                    alert ('M03E');
-                    var subMessage = subMessages [index];
-                    alert ('M03F');
-                    alert("SubMessage: " + JSON.stringify(subMessage))
-                    alert ('M03G');
-                }
-                /**/
+//                alert ('M03C');
+//                alert("subMessages: " + JSON.stringify(subMessages))
 
-                for (var key in subMessages) {
-                    alert ('M03E');
-                    alert ('key: ' + key);
-                    if (subMessages.hasOwnProperty(key)) {
-                        alert ('M0F');
-                        var val = subMessages[key];
-                        alert ('M0G');
-                        alert ('val: ' + val);
+                for (var msgType in subMessages) {
+//                    alert ('M03E');
+//                    alert ('msgType: ' + msgType);
+                    if (subMessages.hasOwnProperty(msgType)) {
+//                        alert ('M0F');
+                        var msgText = subMessages[msgType];
+//                        alert ('M0G');
+//                        alert ('msgText: ' + msgText);
+
+                        switch(msgType) {
+                            case 'success':
+                                OutHtml = CreateSuccessHtml (MainMessage + '<br>::' + msgText);
+                                break;
+                            case 'notice':
+                                OutHtml = CreateNoticeHtml (MainMessage + '<br>::' + msgText);
+                                break;
+                            case 'warning':
+                                OutHtml = CreateWarningHtml (MainMessage + '<br>::' + msgText);
+                                break;
+                            case 'error':
+                                OutHtml = CreateErrorHtml (MainMessage + '<br>::' + msgText);
+                                break;
+                            default:
+                                OutHtml = CreateNoticeHtml (MainMessage + '<br>??' + msgType + '<br>::' + msgText);
+                                break;
+                        }
+//                        alert ('M03P');
+                        messagesArea.append(OutHtml);
+
+//                        alert ('M03Q');
                     }
                 }
 
-                alert ('M03L');
+//                alert ('M03L');
             }
         }
         else
         {
-            alert ('M03X: No messages');
+//            alert ('M03X: No messages');
         }
 
         /**
@@ -613,66 +626,20 @@ jQuery(document).ready(function ($) {
         }
         /**/
 
-        alert ('M20');
+//        alert ('M20');
     }
 
-    /**
-    {
-        "success": true,
-        "message": "Standard message in AjaxAll",
-        "messages": {
-        "notice": ["User notice in ajax call"],
-            "warning": ["User warning in ajax call"],
-            "error": ["User error in ajax call"]
-    },
-        "data": ""
-    }
-    /**/
 
 
-    /**
-            console.log(': Done with data before json object');
-            // find error html text
-            alert("A03");
-            // append to be viewed
-            var messagesArea = $('#Messages');
-            alert("A04");
-            var OutHtml = CreateErrorHtml(errorText);
-            messagesArea.append(OutHtml);
-            alert("A05");
-
-            // extract json data of uploaded image
-            alert("A06");
-        }
-        else {
-
-            alert("C02: found data: '" + JSON.stringify(eData) + "'");
-
-            /**
-             var OutHtml = CreateSuccessHtml (eData);
-             messagesArea.append(OutHtml);
-
-             var OutHtml = CreateNoticeHtml (eData);
-             messagesArea.append(OutHtml);
-
-             var OutHtml = CreateWarningHtml (eData);
-             messagesArea.append(OutHtml);
-             /**
-
-            alert("C02");
-        }
-    }
-    return jData;
-    /**/
 
     // ajaxDone
     //.done(function (eData, textStatus, jqXHR) {
     function ajaxDone (originText, eData, textStatus, jqXHR) {
         console.log(originText + ': ajax now in done section');
-        alert (originText + ': ajax now in done section');
+//        alert (originText + ': ajax now in done section');
 
-        alert ("textStatus: " + textStatus);
-        alert ("edata: " + eData);
+//        alert ("textStatus: " + textStatus);
+//        alert ("edata: " + eData);
 
         /**
         // append message to be viewed
@@ -691,11 +658,11 @@ jQuery(document).ready(function ($) {
 
             // Check that JResponseJson data structure may be available
             if (typeof jData.success === "undefined") {
-                alert('returned wrong data');
+//                alert('returned wrong data');
                 return;
             }
 
-            alert ("jData.success: " + jData.success);
+//            alert ("jData.success: " + jData.success);
 
             writeDataMessages (jData);
         }
@@ -705,10 +672,10 @@ jQuery(document).ready(function ($) {
     //.fail(function (jqXHR, textStatus, exceptionType) {
     function ajaxFail (originText, jqXHR, textStatus, exceptionType) {
         console.log(originText + ': ajax now in fail section');
-        alert (originText + ': ajax now in fail section');
+//        alert (originText + ': ajax now in fail section');
 
-        alert ("exceptionType: " + exceptionType);
-        alert ("textStatus: " + textStatus);
+//        alert ("exceptionType: " + exceptionType);
+//        alert ("textStatus: " + textStatus);
 
     }
 
@@ -716,9 +683,7 @@ jQuery(document).ready(function ($) {
     //.always(function (eData, textStatus, jqXHR) {
     function ajaxAlways (originText, eData, textStatus, jqXHR) {
         console.log(originText + ': ajax now in always section');
-        alert (originText + ': ajax now in always section');
-
-
+//        alert (originText + ': ajax now in always section');
     }
 
-}) // ready
+}); // ready
