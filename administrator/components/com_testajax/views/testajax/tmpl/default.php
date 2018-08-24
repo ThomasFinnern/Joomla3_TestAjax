@@ -38,7 +38,7 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
 
         <div class="control-group">
             <div class="control-label">
-                <label id="jform_ajaxTestValue-lbl" for="jform_ajaxTestValue" class="hasPopover" title="" data-content="On click 'Increase Value' this value is increased if ajax call was successful" data-original-title="JPEG Quality Percentage">
+                <label id="jform_ajaxTestValue-lbl" for="jform_ajaxTestValue" class="hasPopover" title="" data-content="On click 'Increase Value' this value is increased if ajax call was successful" data-original-title="Value for increasing">
                     Test value
                 </label>
             </div>
@@ -54,8 +54,18 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
                 title="On click increases test value with call to server over ajax. The PHP on the server increases the value and returns it"
         >
             <span class="icon-copy" aria-hidden="true"></span>
-            Increase Value (over ajax)
+            Increase Value
         </buttonIncreaseValue>
+
+        <buttonIncreaseValueEcho
+                id="btnIncreaseValueEcho"
+                type="button"
+                class="btn btn-success"
+                title="On click increases test value with call to server over ajax. The PHP on the server increases the value and returns it. Also the new value is echoed on server side. see the effect"
+        >
+            <span class="icon-copy" aria-hidden="true"></span>
+            Increase Value and Echo parts
+        </buttonIncreaseValueEcho>
 
         <br><br>
 
@@ -141,6 +151,21 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
         </buttonAjaxAll>
 
         <br><br>
+
+        <br><br>
+
+        <div id="eDataArea">
+            <div class="control-group">
+                <div class="control-label">
+                    <label id="jform_eDataArea-lbl" for="jform_eDataArea" class="hasPopover" title="" data-content="Area where ajax result 'eData' is displayed" data-original-title="ajax result edata">
+                        Ajax result
+                    </label>
+                </div>
+                <div class="controls">
+                    <input name="jform[eDataArea]" id="jform_eDataArea" value="" aria-invalid="false" type="text"></input>
+                </div>
+            </div>
+        </div>
 
         <?php echo JHtml::_('form.token'); ?>
     </form>

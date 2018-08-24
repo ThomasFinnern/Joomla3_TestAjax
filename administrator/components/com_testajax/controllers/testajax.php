@@ -29,6 +29,7 @@ class TestAjaxControllerTestAjax extends AdminController
 		// JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
 		$msg = 'AjaxIncreaseValue';
+		$hasError = false;
 
 		$app = JFactory::getApplication();
 		try {
@@ -41,12 +42,6 @@ class TestAjaxControllerTestAjax extends AdminController
 			}
 			/**/
 
-			/* Test : remove later */
-			$input = JFactory::getApplication()->input;
-			$number = $input->get('strNumberX', 0, 'INT');
-			$result = 15 / $number;
-			/**/
-
 			// Data from FormData
 			$input = JFactory::getApplication()->input;
 			$number = $input->get('strNumber', 0, 'INT');
@@ -56,6 +51,7 @@ class TestAjaxControllerTestAjax extends AdminController
 
 			$ajaxAnswerObj ['number'] = $number;
 
+			/**
 			// Test: Is input smaller than zero -> tell bad result
 			$hasError = false;
 			if ($number < 0) {
@@ -71,13 +67,77 @@ class TestAjaxControllerTestAjax extends AdminController
 				$msg .= '<br> ? division error survived ? Value ' . $TestNumber;
 				$hasError = false;
 			}
+			/**/
 
 			// yyy comment all
 			echo new JResponseJson($ajaxAnswerObj, $msg, $hasError);
 
 		} catch (Exception $e) {
 			// Failed Test 1
+			$hasError = 1;
+			echo new JResponseJson($e, $msg, $hasError);
+		}
 
+		$app->close();
+	}
+
+	/**/
+	function AjaxIncreaseValueEcho()
+	{
+		// $token    = JSession::getFormToken();
+		// Get instead of post problem
+		// Wrong will return to done with error message
+		// JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+
+		$msg = 'AjaxIncreaseValue';
+		$hasError = false;
+
+		$app = JFactory::getApplication();
+		try {
+			/**
+			// right place to check
+			if ( ! JSession::checkToken()) {
+			$msg = JText::_('JINVALID_TOKEN');
+			$hasError = 1;
+			echo new JResponseJson('', $msg, $hasError);
+			}
+			/**/
+
+			// Data from FormData
+			$input = JFactory::getApplication()->input;
+			$number = $input->get('strNumber', 0, 'INT');
+
+			// Return increased number
+			$number++;
+
+			echo 'PHP: Number is "' . $number . '"';
+
+			$ajaxAnswerObj ['number'] = $number;
+
+			/**
+			// Test: Is input smaller than zero -> tell bad result
+			$hasError = false;
+			if ($number < 0) {
+				$hasError = true;
+				$msg .= '<br> Resulting number must be bigger than zero';
+			}
+
+			// Test: If Number is now zero we produce an integer error
+			if ($number < 0) {
+				$hasError = true;
+				$msg .= '<br> On resulting number zero we produce an integer division error';
+				$TestNumber = 0 / $number;
+				$msg .= '<br> ? division error survived ? Value ' . $TestNumber;
+				$hasError = false;
+			}
+			/**/
+
+			// yyy comment all
+			echo new JResponseJson($ajaxAnswerObj, $msg, $hasError);
+
+		} catch (Exception $e) {
+			// Failed Test 1
+			$hasError = 1;
 			echo new JResponseJson($e, $msg, $hasError);
 		}
 
@@ -196,6 +256,46 @@ class TestAjaxControllerTestAjax extends AdminController
 		$task_failed = false;
 		echo new JResponseJson($data, 'My main response message',$task_failed);
 		/**/
+
+
+	/**/
+	function AjaxErrorException()
+	{
+		// $token    = JSession::getFormToken();
+		// Get instead of post problem
+		// Wrong will return to done with error message
+		// JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+
+		$msg = 'AjaxErrorException';
+		$hasError = false;
+
+		$app = JFactory::getApplication();
+		try {
+
+			// Data from FormData
+			$input = JFactory::getApplication()->input;
+			$number = $input->get('strNumberXXX', 0, 'INT');
+
+			$result = 15 / $number;
+			$ajaxAnswerObj ['number'] = $result;
+
+			// PHP raise exception
+
+			// yyy comment all
+			echo new JResponseJson($ajaxAnswerObj, $msg, $hasError);
+
+		} catch (Exception $e) {
+			// Failed Test 1
+			$hasError = 1;
+			echo new JResponseJson($e, $msg, $hasError);
+		}
+
+		$app->close();
+	}
+
+
+
+
 }
 
 
