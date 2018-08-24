@@ -173,6 +173,10 @@ class TestAjaxControllerTestAjax extends AdminController
 		$app->enqueueMessage('User warning in ajax call', 'warning');
 		$app->enqueueMessage('User error in ajax call', 'error');
 
+		$app->enqueueMessage('User notice in ajax call (2)', 'notice');
+		$app->enqueueMessage('User warning in ajax call (2)', 'warning');
+		$app->enqueueMessage('User error in ajax call (2)', 'error');
+
 		$hasError = False;
 		echo new JResponseJson('', 'Standard message in ' . $msg, $hasError);
 
