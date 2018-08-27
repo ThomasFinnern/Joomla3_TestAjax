@@ -156,8 +156,8 @@ jQuery(document).ready(function ($) {
         var formData = new FormData();
 
         // Fetch user value
-        formData.strNumber = jQuery('#jform_ajaxTestValue').val();
-        console.log ('formData.strNumber: ' + formData.strNumber)
+        formData.append ('strNumber', jQuery('#jform_ajaxTestValue').val());
+        formData.append (Token, '1');
 
         //--------------------------------------
         // Define ajax ...
@@ -250,6 +250,7 @@ jQuery(document).ready(function ($) {
 
         //
         var formData = new FormData();
+        formData.append (Token, '1');
 
         var jqXHR = jQuery.ajax({
             url: urlAjaxError,
@@ -285,6 +286,7 @@ jQuery(document).ready(function ($) {
 
         //
         var formData = new FormData();
+        formData.append (Token, '1');
 
         var jqXHR = jQuery.ajax({
             url: urlAjaxErrorDie,
@@ -320,6 +322,7 @@ jQuery(document).ready(function ($) {
 
         //
         var formData = new FormData();
+        formData.append (Token, '1');
 
         var jqXHR = jQuery.ajax({
             url: urlAjaxErrorJexit,
@@ -355,6 +358,7 @@ jQuery(document).ready(function ($) {
 
         //
         var formData = new FormData();
+        formData.append (Token, '1');
 
         var jqXHR = jQuery.ajax({
             url: urlAjaxErrorInCode,
@@ -389,6 +393,7 @@ jQuery(document).ready(function ($) {
 
         //
         var formData = new FormData();
+        formData.append (Token, '1');
 
 //        console.log('btnAjaxWarning');
         var jqXHR = jQuery.ajax({
@@ -426,6 +431,7 @@ jQuery(document).ready(function ($) {
 
         //
         var formData = new FormData();
+        formData.append (Token, '1');
 
         var jqXHR = jQuery.ajax({
             url: urlAjaxNotice,
@@ -462,6 +468,7 @@ jQuery(document).ready(function ($) {
 
         //
         var formData = new FormData();
+        formData.append (Token, '1');
 
         var jqXHR = jQuery.ajax({
             url: urlAjaxAll,
