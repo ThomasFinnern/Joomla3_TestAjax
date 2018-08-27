@@ -30,7 +30,7 @@ jQuery(document).ready(function ($) {
     // Links to server controller functions
     //--------------------------------------
 
-    var urlIncreaseValue = './index.php?option=com_testajax&task=testajax.AjaxIncreaseValue' + Token;
+    var urlIncreaseValue = './index.php?option=com_testajax&task=testajax.AjaxIncreaseValue';
     var urlIncreaseValueEcho = './index.php?option=com_testajax&task=testajax.AjaxIncreaseValueEcho' + Token;
     var urlAjaxError = 'index.php?option=com_testajax&task=testajax.AjaxError' + Token;
     var urlAjaxErrorDie = 'index.php?option=com_testajax&task=testajax.AjaxErrorDie' + Token;
@@ -56,9 +56,10 @@ jQuery(document).ready(function ($) {
         var formData = new FormData();
 
         // Fetch user value
-        formData.strNumber = jQuery('#jform_ajaxTestValue').val();
-        console.log('formData.strNumber: ' + formData.strNumber);
+        formData.append ('strNumber', jQuery('#jform_ajaxTestValue').val());
+        formData.append (Token, '1');
 
+//        console.log('formData.strNumber: ' + formData.strNumber);
         //--------------------------------------
         // Define ajax ...
         //--------------------------------------

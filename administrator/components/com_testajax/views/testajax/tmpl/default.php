@@ -13,13 +13,10 @@ defined('_JEXEC') or die;
 $doc = JFactory::getDocument();
 //$doc->addStyleSheet(JUri::root() . '/administrator/components/com_testajax/views/com_testajax/css/com_testajax.css');
 
-
 $doc->addScript(JUri::root() . '/administrator/components/com_testajax/views/testajax/js/testajax.js');
 
-$token    = '&' . JSession::getFormToken() . '=' . 1;
-$script[] = 'var Token = \'' . $token . '\';';
+$script[] = 'var Token = \'' . JSession::getFormToken() . '\';';
 JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
-
 
 ?>
 <div id="j-sidebar-container" class="span2">

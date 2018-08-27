@@ -33,12 +33,13 @@ class TestAjaxControllerTestAjax extends AdminController
 
 		$app = JFactory::getApplication();
 		try {
-			/**
+			/**/
 			// right place to check
 			if ( ! JSession::checkToken()) {
-				$msg = JText::_('JINVALID_TOKEN');
+				$errMsg = JText::_('JINVALID_TOKEN');
 				$hasError = 1;
-				echo new JResponseJson('', $msg, $hasError);
+				echo new JResponseJson($msg, $errMsg, $hasError);
+				$app->close();
 			}
 			/**/
 
@@ -89,17 +90,17 @@ class TestAjaxControllerTestAjax extends AdminController
 		// Wrong will return to done with error message
 		// JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-		$msg = 'AjaxIncreaseValue';
+		$msg = 'AjaxIncreaseValueEcho';
 		$hasError = false;
 
 		$app = JFactory::getApplication();
 		try {
-			/**
+			/**/
 			// right place to check
 			if ( ! JSession::checkToken()) {
-			$msg = JText::_('JINVALID_TOKEN');
-			$hasError = 1;
-			echo new JResponseJson('', $msg, $hasError);
+				$msg = JText::_('JINVALID_TOKEN');
+				$hasError = 1;
+				echo new JResponseJson('AjaxIncreaseValueEcho:', $msg, $hasError);
 			}
 			/**/
 
