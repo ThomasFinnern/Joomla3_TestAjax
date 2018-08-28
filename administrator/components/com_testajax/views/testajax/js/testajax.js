@@ -31,15 +31,15 @@ jQuery(document).ready(function ($) {
     //--------------------------------------
 
     var urlIncreaseValue = './index.php?option=com_testajax&task=testajax.AjaxIncreaseValue';
-    var urlIncreaseValueEcho = './index.php?option=com_testajax&task=testajax.AjaxIncreaseValueEcho' + Token;
-    var urlAjaxError = 'index.php?option=com_testajax&task=testajax.AjaxError' + Token;
-    var urlAjaxErrorDie = 'index.php?option=com_testajax&task=testajax.AjaxErrorDie' + Token;
-    var urlAjaxErrorJexit = 'index.php?option=com_testajax&task=testajax.AjaxErrorJexit' + Token;
-    var urlAjaxErrorInCode = 'index.php?option=com_testajax&task=testajax.AjaxErrorInCode' + Token;
-    var urlAjaxErrorException = 'index.php?option=com_testajax&task=testajax.AjaxErrorException' + Token;
-    var urlAjaxWarning = 'index.php?option=com_testajax&task=testajax.AjaxWarning' + Token;
-    var urlAjaxNotice = 'index.php?option=com_testajax&task=testajax.AjaxNotice' + Token;
-    var urlAjaxAll = 'index.php?option=com_testajax&task=testajax.AjaxAll' + Token;
+    var urlIncreaseValueEcho = './index.php?option=com_testajax&task=testajax.AjaxIncreaseValueEcho';
+    var urlAjaxError = 'index.php?option=com_testajax&task=testajax.AjaxError';
+    var urlAjaxErrorDie = 'index.php?option=com_testajax&task=testajax.AjaxErrorDie';
+    var urlAjaxErrorJexit = 'index.php?option=com_testajax&task=testajax.AjaxErrorJexit';
+    var urlAjaxErrorInCode = 'index.php?option=com_testajax&task=testajax.AjaxErrorInCode';
+    var urlAjaxErrorException = 'index.php?option=com_testajax&task=testajax.AjaxErrorException';
+    var urlAjaxWarning = 'index.php?option=com_testajax&task=testajax.AjaxWarning';
+    var urlAjaxNotice = 'index.php?option=com_testajax&task=testajax.AjaxNotice';
+    var urlAjaxAll = 'index.php?option=com_testajax&task=testajax.AjaxAll';
 
     //--------------------------------------
     // Function increase value
@@ -67,8 +67,7 @@ jQuery(document).ready(function ($) {
         var jqXHR = jQuery.ajax({
             url: urlIncreaseValue,
             type: 'POST',
-            //contentType: 'json',
-            contentType: false,
+            contentType: 'json',
             processData: false,
             cache: false,
             // timeout:20000, // 20 seconds timeout (was too short)
@@ -81,6 +80,7 @@ jQuery(document).ready(function ($) {
 
         .done(function (eData, textStatus, jqXHR) {
             console.log('IncreaseValue: ajax returned in done');
+            console.log ("edata: " + eData);
 
             //--- Handle PHP Error and notification messages first (separate) -------------------------
 
@@ -166,8 +166,8 @@ jQuery(document).ready(function ($) {
         var jqXHR = jQuery.ajax({
             url: urlIncreaseValueEcho,
             type: 'POST',
-            //contentType: 'json',
-            contentType: false,
+            contentType: 'json',
+            //contentType: false,
             processData: false,
             cache: false,
             // timeout:20000, // 20 seconds timeout (was too short)
@@ -403,7 +403,7 @@ jQuery(document).ready(function ($) {
             processData: false,
             cache: false,
             // timeout:20000, // 20 seconds timeout (was too short)
-            data: formData
+            //data: formData
         })
             .done(function (eData, textStatus, jqXHR) {
 //                console.log (': ajax returned in done');
@@ -571,7 +571,7 @@ jQuery(document).ready(function ($) {
         var jData = {};
         var preMessage = "";
 
-//        console.log('eData extracted: "' + JSON.stringify (eData) + '"');
+        console.log('eData extracted: "' + JSON.stringify (eData) + '"');
 
         // display result in extra field
         var eDataArea = jQuery('#eDataArea');
@@ -583,6 +583,8 @@ jQuery(document).ready(function ($) {
         // is first part php error- or debug- echo string ?
         // find start of json
         var StartIdx = eData.indexOf('{"');
+
+        console.log('StartIdx: "' + JSON.stringify (StartIdx) + '"');
 
         // No Json data
         if (StartIdx < 0) {
@@ -606,7 +608,7 @@ jQuery(document).ready(function ($) {
 
         }
 
-//        console.log('jData extracted: "' + JSON.stringify (jData) + '"');
+        console.log('jData extracted: "' + JSON.stringify (jData) + '"');
 //        console.log('preMessage extracted: "' + JSON.stringify (preMessage) + '"');
         /**/
         return {
@@ -623,7 +625,8 @@ jQuery(document).ready(function ($) {
 
     function writeUnexpectedErrorMessage (message) {
 
-        console.log('message JSON: "' + JSON.stringify (message) + '"');
+        //console.log('Unexpected message JSON: "' + JSON.stringify (message) + '"');
+        console.log('Unexpected message JSON: "' + JSON.stringify (message).length + '"');
 
         //if (typeof message !== "undefined") {
         if (message) {
@@ -666,7 +669,9 @@ jQuery(document).ready(function ($) {
 
                 MainMessage = jData.message;
 
-                console.log ('jData.messages' + JSON.stringify(jData.messages));
+                console.log ('jData.messages: ' + JSON.stringify(jData.messages));
+                // On missing messages display standard message.
+                // Otherwise use standard message as header
                 if (! jData.messages) {
 
                     OutHtml = CreateNoticeHtml(MainMessage);
@@ -745,10 +750,8 @@ jQuery(document).ready(function ($) {
 
     function ajaxDone (originText, eData, textStatus, jqXHR) {
         console.log(originText + ': ajax now in done section');
-//        console.log (originText + ': ajax now in done section');
-
-//        console.log ("textStatus: " + textStatus);
-//        console.log ("edata: " + eData);
+        console.log ("textStatus: " + textStatus);
+        console.log ("eData: " + eData);
 
         /**
         // append message to be viewed
@@ -757,10 +760,10 @@ jQuery(document).ready(function ($) {
         messagesArea.append(OutHtml);
         /**/
 
-            // returns extract.preMessage, extract.jData
+        // returns extract.preMessage, extract.jData
         var extract = extractDataMessages(eData);
-
         jData = extract.jData;
+
         writeUnexpectedErrorMessage (extract.preMessage);
 
         if (typeof jData !== "undefined") {
