@@ -108,15 +108,15 @@ jQuery(document).ready(function ($) {
                 if (jData.success == true) {
 
                     if (jData.data.number) {
-                        console.log("jData.data.number: " + jData.data.number)
+                        console.log("jData.data.number: " + jData.data.number);
                         jQuery('input[name="jform[ajaxTestValue]"]').val(jData.data.number);
                     }
                 }
                 else {
-//                    console.log("05");
                     console.log('XXX. No success 05');
                 }
             }
+            console.log('IncreaseValueEcho. exit done');
         })
 
         /*----------------------------------------------------
@@ -142,7 +142,7 @@ jQuery(document).ready(function ($) {
     });
 
     //--------------------------------------
-    // Function increase value with echo
+    // Function increase value with "unexpected" echo
     //--------------------------------------
 
     var buttonIncreaseValueEcho = jQuery('#btnIncreaseValueEcho');
@@ -167,7 +167,6 @@ jQuery(document).ready(function ($) {
             url: urlIncreaseValueEcho,
             type: 'POST',
             contentType: 'json',
-            //contentType: false,
             processData: false,
             cache: false,
             // timeout:20000, // 20 seconds timeout (was too short)
@@ -185,8 +184,8 @@ jQuery(document).ready(function ($) {
 
                 // returns extract.preMessage, extract.jData
                 var extract = extractDataMessages(eData);
-
                 jData = extract.jData;
+
                 writeUnexpectedErrorMessage (extract.preMessage);
 
                 if (typeof jData !== "undefined") {
@@ -207,7 +206,7 @@ jQuery(document).ready(function ($) {
                     if (jData.success == true) {
 
                         if (jData.data.number) {
-                            console.log("jData.data.number: " + jData.data.number)
+                            console.log("jData.data.number: " + jData.data.number);
                             jQuery('input[name="jform[ajaxTestValue]"]').val(jData.data.number);
                         }
                     }
@@ -574,8 +573,10 @@ jQuery(document).ready(function ($) {
         console.log('eData extracted: "' + JSON.stringify (eData) + '"');
 
         // display result in extra field
-        var eDataArea = jQuery('#eDataArea');
-        eDataArea.text(eData);
+        var eDataTextArea = jQuery('#eDataTextArea');
+        eDataTextArea.text(eData);
+        var jFormDataArea = jQuery('#jform_eDataArea');
+        jFormDataArea.val (eData);
         //jQuery('input[name="jform[eDataArea]"]').val(eData);
         //jQuery('input[name="jform[eDataArea]"]').val(JSON.stringify (eData));
 

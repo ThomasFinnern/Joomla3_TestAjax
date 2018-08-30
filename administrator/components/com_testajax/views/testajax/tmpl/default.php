@@ -164,6 +164,11 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
             </div>
         </div>
 
+        <div>
+            <Strong>Text of eData</Strong>
+            <div id="eDataTextArea">
+            </div>
+        </div>
         <?php echo JHtml::_('form.token'); ?>
     </form>
 
