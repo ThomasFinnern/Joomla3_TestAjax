@@ -159,16 +159,18 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
                     </label>
                 </div>
                 <div class="controls">
-                    <input name="jform[eDataArea]" id="jform_eDataArea" value="" aria-invalid="false" type="text"></input>
+                    <!-- input name="jform[eDataArea]" id="jform_eDataArea" value="" aria-invalid="false" type="text"></input -->
+                    <textarea rows="6" class="input-xxlarge" name="jform[eDataArea]" id="jform_eDataArea" value="" aria-invalid="false" ></textarea>
+                    <!--input name="jform[eDataArea]" id="jform_eDataArea" class="input-block-level input-xxlarge" type="text" placeholder=".input-block-level" -->
                 </div>
             </div>
         </div>
 
-        <div>
+        <!-- div>
             <Strong>Text of eData</Strong>
             <div id="eDataTextArea">
             </div>
-        </div>
+        </div -->
         <?php echo JHtml::_('form.token'); ?>
     </form>
 
