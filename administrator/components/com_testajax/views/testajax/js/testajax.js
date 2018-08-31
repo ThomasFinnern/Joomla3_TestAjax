@@ -67,7 +67,8 @@ jQuery(document).ready(function ($) {
         var jqXHR = jQuery.ajax({
             url: urlIncreaseValue,
             type: 'POST',
-            contentType: 'json',
+            // Not working: contentType: 'json',
+            contentType: false,
             processData: false,
             cache: false,
             // timeout:20000, // 20 seconds timeout (was too short)
@@ -166,7 +167,7 @@ jQuery(document).ready(function ($) {
         var jqXHR = jQuery.ajax({
             url: urlIncreaseValueEcho,
             type: 'POST',
-            contentType: 'json',
+            contentType: false,
             processData: false,
             cache: false,
             // timeout:20000, // 20 seconds timeout (was too short)
@@ -254,7 +255,7 @@ jQuery(document).ready(function ($) {
         var jqXHR = jQuery.ajax({
             url: urlAjaxError,
             type: 'POST',
-            contentType: 'json',
+            contentType: false,
             processData: false,
             cache: false,
             // timeout:20000, // 20 seconds timeout (was too short)
@@ -290,7 +291,7 @@ jQuery(document).ready(function ($) {
         var jqXHR = jQuery.ajax({
             url: urlAjaxErrorDie,
             type: 'POST',
-            contentType: 'json',
+            contentType: false,
             processData: false,
             cache: false,
             // timeout:20000, // 20 seconds timeout (was too short)
@@ -326,7 +327,7 @@ jQuery(document).ready(function ($) {
         var jqXHR = jQuery.ajax({
             url: urlAjaxErrorJexit,
             type: 'POST',
-            contentType: 'json',
+            contentType: false,
             processData: false,
             cache: false,
             // timeout:20000, // 20 seconds timeout (was too short)
@@ -362,7 +363,7 @@ jQuery(document).ready(function ($) {
         var jqXHR = jQuery.ajax({
             url: urlAjaxErrorInCode,
             type: 'POST',
-            contentType: 'json',
+            contentType: false,
             processData: false,
             cache: false,
             // timeout:20000, // 20 seconds timeout (was too short)
@@ -398,7 +399,7 @@ jQuery(document).ready(function ($) {
         var jqXHR = jQuery.ajax({
             url: urlAjaxWarning,
             type: 'POST',
-            contentType: 'json',
+            contentType: false,
             processData: false,
             cache: false,
             // timeout:20000, // 20 seconds timeout (was too short)
@@ -435,7 +436,7 @@ jQuery(document).ready(function ($) {
         var jqXHR = jQuery.ajax({
             url: urlAjaxNotice,
             type: 'POST',
-            contentType: 'json',
+            contentType: false,
             processData: false,
             cache: false,
             // timeout:20000, // 20 seconds timeout (was too short)
@@ -472,7 +473,7 @@ jQuery(document).ready(function ($) {
         var jqXHR = jQuery.ajax({
             url: urlAjaxAll,
             type: 'POST',
-            contentType: 'json',
+            contentType: false,
             processData: false,
             cache: false,
             // timeout:20000, // 20 seconds timeout (was too short)

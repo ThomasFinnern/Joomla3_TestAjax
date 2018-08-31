@@ -70,15 +70,23 @@ class TestAjaxControllerTestAjax extends AdminController
 		$hasError = false;
 
 		$app = JFactory::getApplication();
+
+		// do check token
+		if ( ! JSession::checkToken()) {
+			$errMsg = JText::_('JINVALID_TOKEN') . " (01)";
+			$hasError = 1;
+			echo new JResponseJson($msg, $errMsg, $hasError);
+			$app->close();
+		}
+
 		try {
-			/**/
-			// right place to check
+			//
 			if ( ! JSession::checkToken()) {
 				$msg = JText::_('JINVALID_TOKEN') . " (02)";
 				$hasError = 1;
 				echo new JResponseJson('AjaxIncreaseValueEcho:', $msg, $hasError);
+				$app->close();
 			}
-			/**/
 
 			// Number from FormData
 			$input = JFactory::getApplication()->input;
@@ -88,7 +96,7 @@ class TestAjaxControllerTestAjax extends AdminController
 			$number++;
 
 			// 'Accidentally' debug echo text before creating json data
-			echo 'PHP: New number is "' . $number . '"';
+			echo 'PHP: New number is "' . $number . '"x';
 
 			$ajaxAnswerObj ['number'] = $number;
 			echo new JResponseJson($ajaxAnswerObj, $msg, $hasError);
@@ -125,6 +133,15 @@ class TestAjaxControllerTestAjax extends AdminController
 		$ajaxAnswerObj [$msg] = True;
 
 		$app = JFactory::getApplication();
+
+		// do check token
+		if ( ! JSession::checkToken()) {
+			$errMsg = JText::_('JINVALID_TOKEN') . " (01)";
+			$hasError = 1;
+			echo new JResponseJson($msg, $errMsg, $hasError);
+			$app->close();
+		}
+
 		$app->enqueueMessage('User error in ajax call', 'error');
 		$hasError = True;
 		echo new JResponseJson($ajaxAnswerObj, 'Standard error message in ' . $msg, $hasError);
@@ -139,6 +156,14 @@ class TestAjaxControllerTestAjax extends AdminController
 		$ajaxAnswerObj ['AjaxIncreaseValueEcho'] = True;
 
 		$app = JFactory::getApplication();
+
+		// do check token
+		if ( ! JSession::checkToken()) {
+			$errMsg = JText::_('JINVALID_TOKEN') . " (01)";
+			$hasError = 1;
+			echo new JResponseJson($msg, $errMsg, $hasError);
+			$app->close();
+		}
 
 		// Data from FormData
 		$input = JFactory::getApplication()->input;
@@ -163,6 +188,15 @@ class TestAjaxControllerTestAjax extends AdminController
 		$ajaxAnswerObj [$msg] = True;
 
 		$app = JFactory::getApplication();
+
+		// do check token
+		if ( ! JSession::checkToken()) {
+			$errMsg = JText::_('JINVALID_TOKEN') . " (01)";
+			$hasError = 1;
+			echo new JResponseJson($msg, $errMsg, $hasError);
+			$app->close();
+		}
+
 		$app->enqueueMessage('User warning in ajax call', 'warning');
 		$hasError = False;
 		echo new JResponseJson($ajaxAnswerObj, 'Standard message in ' . $msg, $hasError);
@@ -177,6 +211,15 @@ class TestAjaxControllerTestAjax extends AdminController
 		//$ajaxAnswerObj ['AjaxIncreaseValueEcho'] = True;
 
 		$app = JFactory::getApplication();
+
+		// do check token
+		if ( ! JSession::checkToken()) {
+			$errMsg = JText::_('JINVALID_TOKEN') . " (01)";
+			$hasError = 1;
+			echo new JResponseJson($msg, $errMsg, $hasError);
+			$app->close();
+		}
+
 		$app->enqueueMessage('User notice in ajax call', 'notice');
 		$hasError = False;
 		echo new JResponseJson('', 'Standard message in ' . $msg, $hasError);
@@ -192,6 +235,15 @@ class TestAjaxControllerTestAjax extends AdminController
 		$ajaxAnswerObj ['AjaxIncreaseValueEcho'] = True;
 
 		$app = JFactory::getApplication();
+
+		// do check token
+		if ( ! JSession::checkToken()) {
+			$errMsg = JText::_('JINVALID_TOKEN') . " (01)";
+			$hasError = 1;
+			echo new JResponseJson($msg, $errMsg, $hasError);
+			$app->close();
+		}
+
 		$app->enqueueMessage('User notice in ajax call', 'notice');
 		$app->enqueueMessage('User warning in ajax call', 'warning');
 		$app->enqueueMessage('User error in ajax call', 'error');
