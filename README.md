@@ -11,7 +11,7 @@ To test ajax functions i created a component which shows the use of the ajax fun
  ![MainView](https://github.com/ThomasFinnern/Joomla3_TestAjax/blob/master/.doc/images/MainView.png?raw=true)
 
 .... <br>
-`
+```javascript
         //--------------------------------------
         // Define ajax ...
         //--------------------------------------
@@ -27,9 +27,9 @@ To test ajax functions i created a component which shows the use of the ajax fun
             data: formData
         })
 
-`
+```
 
-`
+```
         /*----------------------------------------------------
         On success / done
         ----------------------------------------------------*/
@@ -74,9 +74,9 @@ To test ajax functions i created a component which shows the use of the ajax fun
             }
             console.log('IncreaseValueEcho. exit done');
         })
-`
+```
 
-`
+```
         /*----------------------------------------------------
         On fail / error
         ----------------------------------------------------*/
@@ -88,9 +88,9 @@ To test ajax functions i created a component which shows the use of the ajax fun
 
             console.log(jqXHR);
         })
-`
+```
 
-`
+```
         /*----------------------------------------------------
         On always / complete
         ----------------------------------------------------*/
@@ -98,9 +98,9 @@ To test ajax functions i created a component which shows the use of the ajax fun
             console.log('IncreaseValue: ajax section always');
 
         });
-`
+```
 
-`
+```
      {
          "success": true,
          "message": "Standard message in AjaxAll",
@@ -111,9 +111,9 @@ To test ajax functions i created a component which shows the use of the ajax fun
          },
          "data": ""
      }
-`
+```
 
-`
+```
     function extractDataMessages(eData) {
         // Pre init
         var jData = {};
@@ -169,9 +169,9 @@ To test ajax functions i created a component which shows the use of the ajax fun
         // return preMessage, jData;
     }
 
-`
+```
 
-`
+```
     //--------------------------------------
     // Function
     //--------------------------------------
@@ -276,15 +276,17 @@ To test ajax functions i created a component which shows the use of the ajax fun
 
 //        console.log ('M20');
     }
-`
+```
 
-``
+```
+```
 
-``
+```
+```
 
-``
+```
+```
 
-``
 
 
 
