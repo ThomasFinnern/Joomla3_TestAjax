@@ -46,14 +46,13 @@ The standard "xhttp ..." request is similar. There parts automated by jQuery mus
 
 #### Valid answer of request
 ```
-   .done(function (eData, textStatus, jqXHR) {
+    .done(function (eData, textStatus, jqXHR) {
 
-
-   }
+    }
 ```
 Example of a valid eData
 ```
-     {
+    {
          "success": true,
          "message": "Standard message in AjaxAll",
          "messages": {
@@ -62,7 +61,7 @@ Example of a valid eData
              "error": ["User error in ajax call"]
          },
          "data": ""
-     }
+    }
 ```
 
 * "success": true<br>
@@ -73,7 +72,42 @@ Example of a valid eData
 
 * "data": ""<br>
   JSON coded values set on PHP side
-   
+
+ToDo:
+textStatus: ''
+
+success / fail ....
+
+jqXHR: ''
+
+#### Failed answer of request
+
+```
+    .fail(function (jqXHR, textStatus, exceptionType) {
+
+    }
+```
+
+jqXHR: ''
+
+textStatus: ''
+
+exceptionType: ''
+
+#### Finishing event of request
+
+```
+    .always(function (eData, textStatus, jqXHR) {
+
+    }
+```
+
+jqXHR: ''
+
+textStatus: ''
+
+jqXHR: ''
+
 
 <hr>
 The "testajax" component
