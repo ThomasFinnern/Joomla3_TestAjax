@@ -1,33 +1,87 @@
 # Joomla3_TestAjax
-Example to start using ajax in a component
+## Start with using ajax in a Joomla! component
+To explain some behavior on the  javascript and the php section of a joomla! component using ajax i did create a component which shows some aspects of the handling.
 
-I try to summarize parts of what i learned when i did image upload with drag and drop for the rsgallery2.org project
+I try to summarize parts of what i learned when i did image upload with drag and drop for the RSGallery2 component [on github](https://github.com/RSGallery2/RSGallery2_Component)
+
+<hr>
+Definition of ajax calls and response events
+This application does use the jquery ajax call for a more easy handling.
+The standard "xhttp ..." request is similar. There parts automated by jQuery must be programmed additional.
+
+#### Call of ajax function
+```javascript
+    //--------------------------------------
+    // Define ajax ...
+    //--------------------------------------
+
+    var jqXHR = jQuery.ajax({
+        url: urlIncreaseValue,
+        type: 'POST',
+        contentType: false,
+        processData: false,
+        cache: false,
+        //timeout:20000, // 20 seconds timeout (was too short for image upload)
+        data: formData
+    })
+```
+
+* url:
+   The url looks like: <br>
+   urlIncreaseValue = './index.php?option=com_testajax&task=testajax.AjaxIncreaseValue';<br>
+   The part testajax.AjaxIncreaseValue leads to testajax.php in controller and starts function AjaxIncreaseValue there
+* type: 'POST'<br>
+   Type of data send to server ->
+* contentType: false<br>
+   // Not working: contentType: 'json',
+
+* processData: false<br>
+
+* cache: false<br>
+
+* timeout:20000<br>
+   May be set
+* data: formData<br>
+   Special formatted data see below
+
+#### Valid answer of request
+```
+   .done(function (eData, textStatus, jqXHR) {
 
 
-[RSGallery2](https://github.com/RSGallery2/RSGallery2_Component) project on github .
+   }
+```
+Example of a valid eData
+```
+     {
+         "success": true,
+         "message": "Standard message in AjaxAll",
+         "messages": {
+         "notice": ["User notice in ajax call"],
+             "warning": ["User warning in ajax call"],
+             "error": ["User error in ajax call"]
+         },
+         "data": ""
+     }
+```
 
-To test ajax functions i created a component which shows the use of the ajax functions.
+* "success": true<br>
+   True /or false dependent on setting of the answer on php side
+* "message": "Standard message in AjaxAll"<br>
+
+* "messages": {...}<br>
+
+* "data": ""<br>
+  JSON coded values set on PHP side
+   
+
+<hr>
+The "testajax" component
+The component supports buttons to issue several ajax situations and shows the resulting data in a separate text box.
 
  ![MainView](https://github.com/ThomasFinnern/Joomla3_TestAjax/blob/master/.doc/images/MainView.png?raw=true)
 
 .... <br>
-```javascript
-        //--------------------------------------
-        // Define ajax ...
-        //--------------------------------------
-
-        var jqXHR = jQuery.ajax({
-            url: urlIncreaseValue,
-            type: 'POST',
-            // Not working: contentType: 'json',
-            contentType: false,
-            processData: false,
-            cache: false,
-            // timeout:20000, // 20 seconds timeout (was too short)
-            data: formData
-        })
-
-```
 
 ```
         /*----------------------------------------------------
