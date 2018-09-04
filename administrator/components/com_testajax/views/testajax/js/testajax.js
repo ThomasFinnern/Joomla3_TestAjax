@@ -41,11 +41,43 @@ jQuery(document).ready(function ($) {
     var urlAjaxNotice = 'index.php?option=com_testajax&task=testajax.AjaxNotice';
     var urlAjaxAll = 'index.php?option=com_testajax&task=testajax.AjaxAll';
 
+    var urlAjaxErrorNoCode = 'index.php?option=com_testajax&task=testajax.AjaxErrorNoCode';
+
     //--------------------------------------
     // Function increase value
     //--------------------------------------
 
     var buttonIncreaseValue = jQuery('#btnIncreaseValue');
+
+    function resetResultFields () {
+// reset event check boxes
+        //$('.myCheckbox').prop('checked', true);
+        $('#done_event').prop('checked', false);
+        //$('#done_event').prop('checked', true);
+        $('#fail_event').prop('checked', false);
+        //$('#fail_event').prop('checked', true);
+        $('#always_event').prop('checked', false);
+        //$('#always_event').prop('checked', true);
+
+        var eDataTextArea = jQuery('#jform_eDataArea');
+        eDataTextArea.val("");
+
+        var jTextStatus = jQuery('#jform_textStatusDoneArea');
+        jTextStatus.val ("");
+
+        jTextStatus = jQuery('#jform_textStatusFailArea');
+        jTextStatus.val ("");
+
+        jTextStatus = jQuery('#jform_textStatusFailExceptionArea');
+        jTextStatus.val ("");
+
+        jTextStatus = jQuery('#jform_textStatusAlwaysArea');
+        jTextStatus.val ("");
+
+
+
+    }
+
     buttonIncreaseValue.on('click', function (e) {
 
         //--------------------------------------
@@ -59,15 +91,8 @@ jQuery(document).ready(function ($) {
         formData.append ('strNumber', jQuery('#jform_ajaxTestValue').val());
         formData.append (Token, '1');
 
+        resetResultFields ();
 
-        // reset event check boxes
-        //$('.myCheckbox').prop('checked', true);
-        $('#done_event').prop('checked', false);
-        //$('#done_event').prop('checked', true);
-        $('#fail_event').prop('checked', false);
-        //$('#fail_event').prop('checked', true);
-        $('#always_event').prop('checked', false);
-        //$('#always_event').prop('checked', true);
 
 //        console.log('formData.strNumber: ' + formData.strNumber);
         //--------------------------------------
@@ -152,9 +177,10 @@ jQuery(document).ready(function ($) {
         .always(function (eData, textStatus, jqXHR) {
             console.log('IncreaseValue: ajax section always');
             $('#always_event').prop('checked', true);
+            var jTextStatus = jQuery('#jform_textStatusAlwaysArea');
+            jTextStatus.val (textStatus);
 
         });
-
     });
 
     //--------------------------------------
@@ -255,6 +281,8 @@ jQuery(document).ready(function ($) {
             .always(function (eData, textStatus, jqXHR) {
                 console.log('IncreaseValue: ajax section always');
                 $('#always_event').prop('checked', true);
+                var jTextStatus = jQuery('#jform_textStatusAlwaysArea');
+                jTextStatus.val (textStatus);
 
             });
 
@@ -367,6 +395,42 @@ jQuery(document).ready(function ($) {
             });
 
     });
+    //--------------------------------------
+    // Function ajax error no code
+    //--------------------------------------
+
+    var buttonAjaxErrorNoCode = jQuery('#btnAjaxErrorNoCode');
+    buttonAjaxErrorNoCode.on('click', function (e) {
+//        console.log('btnAjaxErrorNoCode');
+
+        //
+        var formData = new FormData();
+        formData.append (Token, '1');
+
+        var jqXHR = jQuery.ajax({
+            url: urlAjaxErrorNoCode,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            cache: false,
+            // timeout:20000, // 20 seconds timeout (was too short)
+            data: formData
+        })
+            .done(function (eData, textStatus, jqXHR) {
+//                console.log (': ajax returned in done');
+                ajaxDone ('#btnAjaxErrorInCode', eData, textStatus, jqXHR);
+            })
+
+            .fail(function (jqXHR, textStatus, exceptionType) {
+                ajaxFail ('#btnAjaxErrorInCode', jqXHR, textStatus, exceptionType);
+            })
+
+            .always(function (eData, textStatus, jqXHR) {
+                ajaxAlways ('#btnAjaxErrorInCode', eData, textStatus, jqXHR);
+            });
+
+    });
+
 
     //--------------------------------------
     // Function ajax error in code
@@ -812,6 +876,16 @@ jQuery(document).ready(function ($) {
 //        console.log (originText + ': ajax now in fail section');
         $('#fail_event').prop('checked', true);
 
+        var jTextStatus = jQuery('#jform_textStatusFailArea');
+        jTextStatus.val (textStatus);
+
+        var jTextStatus = jQuery('#jform_textStatusFailExceptionArea');
+        jTextStatus.val (exceptionType);
+
+
+        // alert(xhr.status);
+        // alert(exceptionType);
+
 //        console.log ("exceptionType: " + exceptionType);
 //        console.log ("textStatus: " + textStatus);
 
@@ -825,6 +899,9 @@ jQuery(document).ready(function ($) {
         console.log(originText + ': ajax now in always section');
 //        console.log (originText + ': ajax now in always section');
         $('#always_event').prop('checked', true);
+        var jTextStatus = jQuery('#jform_textStatusAlwaysArea');
+        jTextStatus.val (textStatus);
+
     }
 
 }); // ready

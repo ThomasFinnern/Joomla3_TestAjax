@@ -112,6 +112,19 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
 
         <br><br>
 
+        <buttonAjaxErrorNoCode
+                id="btnAjaxErrorNoCode"
+                type="button"
+                class="btn btn-danger"
+                title="On click creates an error on ajax call on the server side with a no code error (Function not found)"
+        >
+            <span class="icon-copy" aria-hidden="true"></span>
+            Ajax error from php NO code
+        </buttonAjaxErrorNoCode>
+
+        <br><br>
+
+
         <buttonAjaxWarning
                 id="btnAjaxWarning"
                 type="button"
