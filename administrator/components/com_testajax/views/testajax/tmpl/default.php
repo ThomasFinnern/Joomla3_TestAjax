@@ -122,8 +122,6 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
             Ajax Warning
         </buttonAjaxWarning>
 
-        <br><br>
-
         <buttonAjaxNotice
                 id="btnAjaxNotice"
                 type="button"
@@ -133,8 +131,6 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
             <span class="icon-copy" aria-hidden="true"></span>
             Ajax Notice
         </buttonAjaxNotice>
-
-        <br><br>
 
         <buttonAjaxAll
                 id="btnAjaxAll"
@@ -147,9 +143,30 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
             Ajax all at once
         </buttonAjaxAll>
 
-        <br><br>
+        <!--br><br-->
 
         <br><br>
+
+        <div id="EventsArea">
+            <div class="control-group">
+                <div class="control-label">
+                    <label id="jform_eDataArea-lbl" for="jform_eDataArea" class="hasPopover" title="" data-content="Area where ajax result 'eData' is displayed" data-original-title="ajax result edata">
+                        Events issued
+                    </label>
+                </div>
+                <div class="controls">
+                    <label class="checkbox inline">
+                        <input type="checkbox" id="done_event" value="option1"> .done
+                    </label>
+                    <label class="checkbox inline">
+                        <input type="checkbox" id="fail_event" value="option2"> .fail
+                    </label>
+                    <label class="checkbox inline">
+                        <input type="checkbox" id="always_event" value="option3"> .always
+                    </label>
+                </div>
+            </div>
+        </div>
 
         <div id="eDataArea">
             <div class="control-group">
@@ -165,6 +182,59 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
                 </div>
             </div>
         </div>
+
+        <div id="TextStatusDoneArea">
+            <div class="control-group">
+                <div class="control-label">
+                    <label id="jform_textStatusDoneArea-lbl" for="jform_textStatusDoneArea" class="hasPopover" title="" data-content="Area where ajax result 'TextStatus' for done event is displayed" data-original-title="ajax result textStatusDoneArea">
+                        "TextStatus" in .done event
+                    </label>
+                </div>
+                <div class="controls">
+                    <textarea rows="1" class="input-xxlarge" name="jform[textStatusDoneArea]" id="jform_textStatusDoneArea" value="" aria-invalid="false" ></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div id="TextStatusFailArea">
+            <div class="control-group">
+                <div class="control-label">
+                    <label id="jform_textStatusFailArea-lbl" for="jform_textStatusFailArea" class="hasPopover" title="" data-content="Area where ajax result 'TextStatus' for done event is displayed" data-original-title="ajax result textStatusFailArea">
+                        "TextStatus" in .fail event
+                    </label>
+                </div>
+                <div class="controls">
+                    <textarea rows="1" class="input-xxlarge" name="jform[textStatusFailArea]" id="jform_textStatusFailArea" value="" aria-invalid="false" ></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div id="TextStatusFailExceptionArea">
+            <div class="control-group">
+                <div class="control-label">
+                    <label id="jform_textStatusFailExceptionArea-lbl" for="jform_textStatusFailExceptionArea" class="hasPopover" title="" data-content="Area where ajax result 'TextStatus' for done event is displayed" data-original-title="ajax result textStatusFailExceptionArea">
+                        "exceptionType" in .fail event
+                    </label>
+                </div>
+                <div class="controls">
+                    <textarea rows="1" class="input-xxlarge" name="jform[textStatusFailExceptionArea]" id="jform_textStatusFailExceptionArea" value="" aria-invalid="false" ></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div id="TextStatusAlwaysArea">
+            <div class="control-group">
+                <div class="control-label">
+                    <label id="jform_textStatusAlwaysArea-lbl" for="jform_textStatusAlwaysArea" class="hasPopover" title="" data-content="Area where ajax result 'TextStatus' for done event is displayed" data-original-title="ajax result textStatusAlwaysArea">
+                        "TextStatus" in .always event
+                    </label>
+                </div>
+                <div class="controls">
+                    <textarea rows="1" class="input-xxlarge" name="jform[textStatusAlwaysArea]" id="jform_textStatusAlwaysArea" value="" aria-invalid="false" ></textarea>
+                </div>
+            </div>
+        </div>
+
 
         <!-- div>
             <Strong>Text of eData</Strong>

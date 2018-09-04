@@ -59,6 +59,16 @@ jQuery(document).ready(function ($) {
         formData.append ('strNumber', jQuery('#jform_ajaxTestValue').val());
         formData.append (Token, '1');
 
+
+        // reset event check boxes
+        //$('.myCheckbox').prop('checked', true);
+        $('#done_event').prop('checked', false);
+        //$('#done_event').prop('checked', true);
+        $('#fail_event').prop('checked', false);
+        //$('#fail_event').prop('checked', true);
+        $('#always_event').prop('checked', false);
+        //$('#always_event').prop('checked', true);
+
 //        console.log('formData.strNumber: ' + formData.strNumber);
         //--------------------------------------
         // Define ajax ...
@@ -82,6 +92,9 @@ jQuery(document).ready(function ($) {
         .done(function (eData, textStatus, jqXHR) {
             console.log('IncreaseValue: ajax returned in done');
             console.log ("edata: " + eData);
+            $('#done_event').prop('checked', true);
+            var jTextStatus = jQuery('#jform_textStatusDoneArea');
+            jTextStatus.val (textStatus);
 
             //--- Handle PHP Error and notification messages first (separate) -------------------------
 
@@ -128,6 +141,7 @@ jQuery(document).ready(function ($) {
 
             console.log('IncreaseValue: ajax returned in fail');
             console.log(' failed: "' + textStatus + '" -> "' + exceptionType + '" [' + jqXHR.status + ']');
+            $('#fail_event').prop('checked', true);
 
             console.log(jqXHR);
         })
@@ -137,6 +151,7 @@ jQuery(document).ready(function ($) {
         ----------------------------------------------------*/
         .always(function (eData, textStatus, jqXHR) {
             console.log('IncreaseValue: ajax section always');
+            $('#always_event').prop('checked', true);
 
         });
 
@@ -180,6 +195,9 @@ jQuery(document).ready(function ($) {
 
             .done(function (eData, textStatus, jqXHR) {
                 console.log('IncreaseValueEcho: ajax returned in done');
+                $('#done_event').prop('checked', true);
+                var jTextStatus = jQuery('#jform_textStatusDoneArea');
+                jTextStatus.val (textStatus);
 
                 //--- Handle PHP Error and notification messages first (separate) -------------------------
 
@@ -226,6 +244,7 @@ jQuery(document).ready(function ($) {
 
                 console.log('IncreaseValueEcho: ajax returned in fail');
                 console.log(' failed: "' + textStatus + '" -> "' + exceptionType + '" [' + jqXHR.status + ']');
+                $('#fail_event').prop('checked', true);
 
                 console.log(jqXHR);
             })
@@ -235,6 +254,7 @@ jQuery(document).ready(function ($) {
             ----------------------------------------------------*/
             .always(function (eData, textStatus, jqXHR) {
                 console.log('IncreaseValue: ajax section always');
+                $('#always_event').prop('checked', true);
 
             });
 
@@ -578,9 +598,6 @@ jQuery(document).ready(function ($) {
         eDataTextArea.text(eData);
         var jFormDataArea = jQuery('#jform_eDataArea');
         jFormDataArea.val (eData);
-        //jQuery('input[name="jform[eDataArea]"]').val(eData);
-        //jQuery('input[name="jform[eDataArea]"]').val(JSON.stringify (eData));
-
 
         // is first part php error- or debug- echo string ?
         // find start of json
@@ -754,6 +771,9 @@ jQuery(document).ready(function ($) {
         console.log(originText + ': ajax now in done section');
         console.log ("textStatus: " + textStatus);
         console.log ("eData: " + eData);
+        $('#done_event').prop('checked', true);
+        var jTextStatus = jQuery('#jform_textStatusDoneArea');
+        jTextStatus.val (textStatus);
 
         /**
         // append message to be viewed
@@ -790,6 +810,7 @@ jQuery(document).ready(function ($) {
     function ajaxFail (originText, jqXHR, textStatus, exceptionType) {
         console.log(originText + ': ajax now in fail section');
 //        console.log (originText + ': ajax now in fail section');
+        $('#fail_event').prop('checked', true);
 
 //        console.log ("exceptionType: " + exceptionType);
 //        console.log ("textStatus: " + textStatus);
@@ -803,6 +824,7 @@ jQuery(document).ready(function ($) {
     function ajaxAlways (originText, eData, textStatus, jqXHR) {
         console.log(originText + ': ajax now in always section');
 //        console.log (originText + ': ajax now in always section');
+        $('#always_event').prop('checked', true);
     }
 
 }); // ready
