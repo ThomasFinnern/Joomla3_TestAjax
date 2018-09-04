@@ -4,10 +4,11 @@ To explain some behavior on the  javascript and the php section of a joomla! com
 
 I try to summarize parts of what i learned when i did image upload with drag and drop for the RSGallery2 component [on github](https://github.com/RSGallery2/RSGallery2_Component)
 
-<hr>
-Definition of ajax calls and response events
+---
+### Code for ajax calls and response events
+
 This application does use the jquery ajax call for a more easy handling.
-The standard "xhttp ..." request is similar. There parts automated by jQuery must be programmed additional.
+The standard "xhttp ..." request is similar. Parts automated by jQuery must then be programmed additional.
 
 #### Call of ajax function
 ```javascript
@@ -109,8 +110,8 @@ textStatus: ''
 jqXHR: ''
 
 
-<hr>
-The "testajax" component
+---
+### The "testajax" component
 The component supports buttons to issue several ajax situations and shows the resulting data in a separate text box.
 
  ![MainView](https://github.com/ThomasFinnern/Joomla3_TestAjax/blob/master/.doc/images/MainView.png?raw=true)
@@ -413,6 +414,6 @@ The component supports buttons to issue several ajax situations and shows the re
 
 
 
-### Origin of code and ideas
+#### Origin of code and ideas
 
 Parts of what i learned can be found in Joomla! code itself and most other parts i found on stackoveflow or stackexchange. Thanks to the people answering questions there
