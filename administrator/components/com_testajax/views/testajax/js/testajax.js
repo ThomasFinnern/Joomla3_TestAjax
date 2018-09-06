@@ -657,38 +657,45 @@ jQuery(document).ready(function ($) {
 
         console.log('eData extracted: "' + JSON.stringify (eData) + '"');
 
-        // display result in extra field
+        // display result in display field. will render html
         var eDataTextArea = jQuery('#eDataTextArea');
         eDataTextArea.text(eData);
+        // display result as text
         var jFormDataArea = jQuery('#jform_eDataArea');
         jFormDataArea.val (eData);
 
-        // is first part php error- or debug- echo string ?
-        // find start of json
-        var StartIdx = eData.indexOf('{"');
+        var StartIdx;
 
-        console.log('StartIdx: "' + JSON.stringify (StartIdx) + '"');
-
-        // No Json data
+        //  Complete thml page found ? -> return
+        StartIdx = eData.indexOf('<!DOCTYPE html>');
         if (StartIdx < 0) {
-            preMessage = eData;
-        }
-        else {
-            var jsonText;
+            // Other data then complete html page
 
-            // Unexpected text in front to JSON data
-            if (StartIdx > 0) {
-                // message part and json data existing
-                preMessage = eData.substring(0, StartIdx - 1);
-                jsonText = eData.substring(StartIdx);
+            // is first part php error- or debug- echo string ?
+            // find start of json
+            StartIdx = eData.indexOf('{"');
+
+            console.log('StartIdx: "' + JSON.stringify (StartIdx) + '"');
+
+            // No Json data
+            if (StartIdx < 0) {
+                preMessage = eData;
             }
-            else
-            {
-               jsonText = eData;
+            else {
+                var jsonText;
+
+                // Unexpected text in front to JSON data
+                if (StartIdx > 0) {
+                    // message part and json data existing
+                    preMessage = eData.substring(0, StartIdx - 1);
+                    jsonText = eData.substring(StartIdx);
+                }
+                else {
+                    jsonText = eData;
+                }
+
+                jData = jQuery.parseJSON(jsonText);
             }
-
-            jData = jQuery.parseJSON(jsonText);
-
         }
 
         console.log('jData extracted: "' + JSON.stringify (jData) + '"');
