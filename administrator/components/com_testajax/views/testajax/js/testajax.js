@@ -746,7 +746,8 @@ jQuery(document).ready(function ($) {
                     preMessage = eData.substring(0, StartIdx - 1);
                     jsonText = eData.substring(StartIdx);
                 }
-                else {
+            else
+            {
                     jsonText = eData;
                 }
 
@@ -790,7 +791,6 @@ jQuery(document).ready(function ($) {
 
     function writeDataMessages (jData) {
         var messagesArea = jQuery('#messagesArea');
-        var OutHtml = "";
         var MainMessage = "";
         var JMessages = {};
         var OutHtml = "";
@@ -845,19 +845,19 @@ jQuery(document).ready(function ($) {
 
                         switch(msgType) {
                             case 'success':
-                                OutHtml = CreateSuccessHtml (MainMessage + '<br>::' + msgText);
+                                OutHtml = CreateSuccessHtml (MainMessage + '<br>' + msgText);
                                 break;
                             case 'notice':
-                                OutHtml = CreateNoticeHtml (MainMessage + '<br>::' + msgText);
+                                OutHtml = CreateNoticeHtml (MainMessage + '<br>' + msgText);
                                 break;
                             case 'warning':
-                                OutHtml = CreateWarningHtml (MainMessage + '<br>::' + msgText);
+                                OutHtml = CreateWarningHtml (MainMessage + '<br>' + msgText);
                                 break;
                             case 'error':
-                                OutHtml = CreateErrorHtml (MainMessage + '<br>::' + msgText);
+                                OutHtml = CreateErrorHtml (MainMessage + '<br>' + msgText);
                                 break;
                             default:
-                                OutHtml = CreateNoticeHtml (MainMessage + '<br>??' + msgType + '<br>::' + msgText);
+                                OutHtml = CreateNoticeHtml (MainMessage + '<br>??' + msgType + '<br>' + msgText);
                                 break;
                         }
 //                        console.log ('M03P');
@@ -954,6 +954,13 @@ jQuery(document).ready(function ($) {
         console.log ('status: ' + jqXHR.status); // Number
         console.log ('readyState: ' + jqXHR.readyState);
         console.log ('responseText: ' + jqXHR.responseText);
+
+        var messagesArea = jQuery('#messagesArea');
+
+        var msgText = exceptionType + '//' + textStatus + ': ' + jqXHR.responseText;
+        var OutHtml = CreateErrorHtml (originText + ' failed:' + '<br>' + msgText);
+        // console.log ('OutHtml: ' + OutHtml);
+        messagesArea.append(OutHtml);
 
         // alert(exceptionType);
 
