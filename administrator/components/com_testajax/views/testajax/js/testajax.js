@@ -94,7 +94,6 @@ jQuery(document).ready(function ($) {
 
         resetResultFields ();
 
-
 //        console.log('formData.strNumber: ' + formData.strNumber);
         //--------------------------------------
         // Define ajax ...
@@ -202,6 +201,8 @@ jQuery(document).ready(function ($) {
         formData.append ('strNumber', jQuery('#jform_ajaxTestValue').val());
         formData.append (Token, '1');
 
+        resetResultFields ();
+
         //--------------------------------------
         // Define ajax ...
         //--------------------------------------
@@ -301,6 +302,8 @@ jQuery(document).ready(function ($) {
         var formData = new FormData();
         formData.append (Token, '1');
 
+        resetResultFields ();
+
         var jqXHR = jQuery.ajax({
             url: urlAjaxError,
             type: 'POST',
@@ -336,6 +339,8 @@ jQuery(document).ready(function ($) {
         //
         var formData = new FormData();
         formData.append (Token, '1');
+
+        resetResultFields ();
 
         var jqXHR = jQuery.ajax({
             url: urlAjaxErrorDie,
@@ -373,6 +378,8 @@ jQuery(document).ready(function ($) {
         var formData = new FormData();
         formData.append (Token, '1');
 
+        resetResultFields ();
+
         var jqXHR = jQuery.ajax({
             url: urlAjaxErrorJexit,
             type: 'POST',
@@ -407,6 +414,8 @@ jQuery(document).ready(function ($) {
         //
         var formData = new FormData();
         formData.append (Token, '1');
+
+        resetResultFields ();
 
         var jqXHR = jQuery.ajax({
             url: urlAjaxErrorNoCode,
@@ -445,6 +454,8 @@ jQuery(document).ready(function ($) {
         var formData = new FormData();
         formData.append (Token, '1');
 
+        resetResultFields ();
+
         var jqXHR = jQuery.ajax({
             url: urlAjaxErrorInCode,
             type: 'POST',
@@ -481,6 +492,8 @@ jQuery(document).ready(function ($) {
         var formData = new FormData();
         formData.append (Token, '1');
 
+        resetResultFields ();
+
         var jqXHR = jQuery.ajax({
             url: urlAjaxErrorReturnHeader,
             type: 'POST',
@@ -515,6 +528,8 @@ jQuery(document).ready(function ($) {
         //
         var formData = new FormData();
         formData.append (Token, '1');
+
+        resetResultFields ();
 
 //        console.log('btnAjaxWarning');
         var jqXHR = jQuery.ajax({
@@ -554,6 +569,8 @@ jQuery(document).ready(function ($) {
         var formData = new FormData();
         formData.append (Token, '1');
 
+        resetResultFields ();
+
         var jqXHR = jQuery.ajax({
             url: urlAjaxNotice,
             type: 'POST',
@@ -590,6 +607,8 @@ jQuery(document).ready(function ($) {
         //
         var formData = new FormData();
         formData.append (Token, '1');
+
+        resetResultFields ();
 
         var jqXHR = jQuery.ajax({
             url: urlAjaxAll,
