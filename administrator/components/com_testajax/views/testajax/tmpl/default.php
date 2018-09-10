@@ -119,8 +119,18 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
                 title="On click creates an error on ajax call on the server side with a no code error (Function not found)"
         >
             <span class="icon-copy" aria-hidden="true"></span>
-            Ajax error from php NO code
+            Ajax error php NO code
         </buttonAjaxErrorNoCode>
+
+        <buttonAjaxErrorReturnHeader
+                id="btnAjaxErrorReturnHeader"
+                type="button"
+                class="btn btn-danger"
+                title="On click creates an error on ajax call on the server side with a HTTP 403 forbidden ..."
+        >
+            <span class="icon-copy" aria-hidden="true"></span>
+            Ajax error php header
+        </buttonAjaxErrorReturnHeader>
 
         <br><br>
 

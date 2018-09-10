@@ -42,6 +42,7 @@ jQuery(document).ready(function ($) {
     var urlAjaxAll = 'index.php?option=com_testajax&task=testajax.AjaxAll';
 
     var urlAjaxErrorNoCode = 'index.php?option=com_testajax&task=testajax.AjaxErrorNoCode';
+    var urlAjaxErrorReturnHeader = 'index.php?option=com_testajax&task=testajax.AjaxErrorReturnHeader';
 
     //--------------------------------------
     // Function increase value
@@ -460,6 +461,42 @@ jQuery(document).ready(function ($) {
 
             .fail(function (jqXHR, textStatus, exceptionType) {
                 ajaxFail ('#btnAjaxErrorInCode', jqXHR, textStatus, exceptionType);
+            })
+
+            .always(function (eData, textStatus, jqXHR) {
+                ajaxAlways ('#btnAjaxErrorInCode', eData, textStatus, jqXHR);
+            });
+
+    });
+
+    //--------------------------------------
+    // Function ajax error in code
+    //--------------------------------------
+
+    var buttonAjaxErrorReturnHeader = jQuery('#btnAjaxErrorReturnHeader');
+    buttonAjaxErrorReturnHeader.on('click', function (e) {
+//        console.log('btnAjaxErrorReturnHeader');
+
+        //
+        var formData = new FormData();
+        formData.append (Token, '1');
+
+        var jqXHR = jQuery.ajax({
+            url: urlAjaxErrorReturnHeader,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            cache: false,
+            // timeout:20000, // 20 seconds timeout (was too short)
+            data: formData
+        })
+            .done(function (eData, textStatus, jqXHR) {
+//                console.log (': ajax returned in done');
+                ajaxDone ('#btnAjaxErrorReturnHeader', eData, textStatus, jqXHR);
+            })
+
+            .fail(function (jqXHR, textStatus, exceptionType) {
+                ajaxFail ('#btnAjaxErrorReturnHeader', jqXHR, textStatus, exceptionType);
             })
 
             .always(function (eData, textStatus, jqXHR) {
@@ -889,8 +926,16 @@ jQuery(document).ready(function ($) {
         var jTextStatus = jQuery('#jform_textStatusFailExceptionArea');
         jTextStatus.val (exceptionType);
 
+        //alert (JSON.stringify(jqXHR));
+        // display result in display field. will render html
+        var eDataTextArea = jQuery('#jform_eDataArea');
+        eDataTextArea.text(JSON.stringify(jqXHR));
+        //console.log ('textStatus: ' + JSON.stringify(textStatus));
+        //console.log ('exceptionType: ' + JSON.stringify(exceptionType));
+        console.log ('status: ' + jqXHR.status); // Number
+        console.log ('readyState: ' + jqXHR.readyState);
+        console.log ('responseText: ' + jqXHR.responseText);
 
-        // alert(xhr.status);
         // alert(exceptionType);
 
 //        console.log ("exceptionType: " + exceptionType);

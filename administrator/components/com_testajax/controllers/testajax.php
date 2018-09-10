@@ -181,6 +181,29 @@ class TestAjaxControllerTestAjax extends AdminController
 		$app->close();
 	}
 
+	/* Return error message with header */
+	function AjaxErrorReturnHeader()
+	{
+		$msg                                     = 'AjaxErrorReturnHeader';
+		$ajaxAnswerObj ['AjaxErrorReturnHeader'] = true;
+
+		/**
+		// $app = JFactory::getApplication();
+
+		// do check token
+		if (!JSession::checkToken())
+		{
+			$errMsg   = JText::_('JINVALID_TOKEN') . " (01)";
+			$hasError = 1;
+			echo new JResponseJson($msg, $errMsg, $hasError);
+			$app->close();
+		}
+		// Read more: http://www.rachaelarnold.com/dev/archive/trigger-ajax-error-event#ixzz5Qh2cmC00
+		/**/
+		header('HTTP/1.1 403 Forbidden');
+		exit("Uh, hi. Your IP address has been blacklisted for too many spammy attempts.");
+	}
+
 	/* Standard way to tell about warning */
 	function AjaxWarning()
 	{
