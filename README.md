@@ -110,6 +110,42 @@ textStatus: ''
 jqXHR: ''
 
 
+#### Transferring data to the server
+
+ToDo: Token and others
+
+
+
+
+---
+### Joomla code on the server side
+
+```php
+/* Return a mixture of standard notice, warning and error messages in json format */
+function AjaxAll()
+{
+  $msg = 'AjaxAll';
+  $ajaxAnswerObj ['AjaxAll'] = True;
+
+  $app = JFactory::getApplication();
+
+  $app->enqueueMessage('User notice in ajax call', 'notice');
+  $app->enqueueMessage('User warning in ajax call', 'warning');
+  $app->enqueueMessage('User error in ajax call', 'error');
+
+  $hasError = False;
+  echo new JResponseJson($ajaxAnswerObj, 'Standard message in ' . $msg, $hasError);
+
+  $app->close();
+}
+```
+Joomla supports JSON answers for ajax requests
+
+(1)
+
+(2)
+
+
 ---
 ### The "testajax" component
 The component supports buttons to issue several ajax situations and shows the resulting data in a separate text box.

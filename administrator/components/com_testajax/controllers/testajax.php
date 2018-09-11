@@ -153,7 +153,7 @@ class TestAjaxControllerTestAjax extends AdminController
 	function AjaxErrorInCode()
 	{
 		$msg = 'AjaxErrorInCode';
-		$ajaxAnswerObj ['AjaxIncreaseValueEcho'] = True;
+		$ajaxAnswerObj [$msg] = True;
 
 		$app = JFactory::getApplication();
 
@@ -184,8 +184,8 @@ class TestAjaxControllerTestAjax extends AdminController
 	/* Return error message with header */
 	function AjaxErrorReturnHeader()
 	{
-		$msg                                     = 'AjaxErrorReturnHeader';
-		$ajaxAnswerObj ['AjaxErrorReturnHeader'] = true;
+		$msg                  = 'AjaxErrorReturnHeader';
+		$ajaxAnswerObj [$msg] = true;
 
 		/**
 		// $app = JFactory::getApplication();
@@ -231,7 +231,7 @@ class TestAjaxControllerTestAjax extends AdminController
 	function AjaxNotice()
 	{
 		$msg = 'AjaxNotice';
-		//$ajaxAnswerObj ['AjaxIncreaseValueEcho'] = True;
+		//$ajaxAnswerObj [$msg] = True;
 
 		$app = JFactory::getApplication();
 
@@ -251,11 +251,11 @@ class TestAjaxControllerTestAjax extends AdminController
 		$app->close();
 	}
 
-	/* Send a mixture of standard notice, warning and error messages in jsonn format */
+	/* Return a mixture of standard notice, warning and error messages in json format */
 	function AjaxAll()
 	{
 		$msg = 'AjaxAll';
-		$ajaxAnswerObj ['AjaxIncreaseValueEcho'] = True;
+		$ajaxAnswerObj [$msg] = True;
 
 		$app = JFactory::getApplication();
 
@@ -305,7 +305,7 @@ class TestAjaxControllerTestAjax extends AdminController
 		// JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
 		$msg = 'AjaxErrorException';
-		$ajaxAnswerObj ['AjaxIncreaseValueEcho'] = True;
+		$ajaxAnswerObj [$msg] = True;
 		$hasError = false;
 
 		$app = JFactory::getApplication();

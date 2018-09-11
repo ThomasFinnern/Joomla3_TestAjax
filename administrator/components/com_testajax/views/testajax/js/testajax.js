@@ -948,7 +948,8 @@ jQuery(document).ready(function ($) {
         //alert (JSON.stringify(jqXHR));
         // display result in display field. will render html
         var eDataTextArea = jQuery('#jform_eDataArea');
-        eDataTextArea.text(JSON.stringify(jqXHR));
+        eDataTextArea.val('jqXHR: \n' + JSON.stringify(jqXHR));
+
         //console.log ('textStatus: ' + JSON.stringify(textStatus));
         //console.log ('exceptionType: ' + JSON.stringify(exceptionType));
         console.log ('status: ' + jqXHR.status); // Number
@@ -957,10 +958,12 @@ jQuery(document).ready(function ($) {
 
         var messagesArea = jQuery('#messagesArea');
 
-        var msgText = exceptionType + '//' + textStatus + ': ' + jqXHR.responseText;
+        var msgText = jqXHR.responseText + '<br>jqXHR.status: ' + jqXHR.status + ' exceptionType: ' + exceptionType + '<br>textStatus: ' + textStatus;
         var OutHtml = CreateErrorHtml (originText + ' failed:' + '<br>' + msgText);
         // console.log ('OutHtml: ' + OutHtml);
         messagesArea.append(OutHtml);
+
+
 
         // alert(exceptionType);
 
