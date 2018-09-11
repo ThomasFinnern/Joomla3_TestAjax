@@ -46,13 +46,13 @@ The standard "xhttp ..." request is similar. Parts automated by jQuery must then
    Special formatted data see below
 
 #### Valid answer of request
-```
+```javascript
     .done(function (eData, textStatus, jqXHR) {
 
     }
 ```
 Example of a valid eData
-```
+```json
     {
          "success": true,
          "message": "Standard message in AjaxAll",
@@ -83,7 +83,7 @@ jqXHR: ''
 
 #### Failed answer of request
 
-```
+```javascript
     .fail(function (jqXHR, textStatus, exceptionType) {
 
     }
@@ -97,7 +97,7 @@ exceptionType: ''
 
 #### Finishing event of request
 
-```
+```javascript
     .always(function (eData, textStatus, jqXHR) {
 
     }
@@ -154,7 +154,7 @@ The component supports buttons to issue several ajax situations and shows the re
 
 .... <br>
 
-```
+```javascript
         /*----------------------------------------------------
         On success / done
         ----------------------------------------------------*/
@@ -201,7 +201,7 @@ The component supports buttons to issue several ajax situations and shows the re
         })
 ```
 
-```
+```javascript
         /*----------------------------------------------------
         On fail / error
         ----------------------------------------------------*/
@@ -215,7 +215,7 @@ The component supports buttons to issue several ajax situations and shows the re
         })
 ```
 
-```
+```javascript
         /*----------------------------------------------------
         On always / complete
         ----------------------------------------------------*/
@@ -225,7 +225,7 @@ The component supports buttons to issue several ajax situations and shows the re
         });
 ```
 
-```
+```javascript
      {
          "success": true,
          "message": "Standard message in AjaxAll",
@@ -238,7 +238,7 @@ The component supports buttons to issue several ajax situations and shows the re
      }
 ```
 
-```
+```javascript
     function extractDataMessages(eData) {
         // Pre init
         var jData = {};
@@ -296,7 +296,7 @@ The component supports buttons to issue several ajax situations and shows the re
 
 ```
 
-```
+```javascript
     //--------------------------------------
     // Function
     //--------------------------------------
@@ -403,13 +403,13 @@ The component supports buttons to issue several ajax situations and shows the re
     }
 ```
 
-```
-```
-
-```
+```javascript
 ```
 
+```javascript
 ```
+
+```javascript
 ```
 
 
