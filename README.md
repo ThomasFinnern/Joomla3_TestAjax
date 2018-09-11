@@ -1,4 +1,8 @@
 # Joomla3_TestAjax
+
+> **Sorry, the document is not finished**
+
+
 ## Start with using ajax in a Joomla! component
 To explain some behavior on the  javascript and the php section of a joomla! component using ajax i did create a component which shows some aspects of the handling.
 
@@ -74,12 +78,14 @@ Example of a valid eData
 * "data": ""<br>
   JSON coded values set on PHP side
 
-ToDo:
-textStatus: ''
-
-success / fail ....
-
-jqXHR: ''
+> From here on the document is not finished
+>
+> ToDo:
+> textStatus: ''
+>
+> success / fail ....
+>
+> jqXHR: ''
 
 #### Failed answer of request
 
